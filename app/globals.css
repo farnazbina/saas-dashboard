@@ -46,6 +46,7 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --gradient-primary: var(--gradient-primary);
 }
 
 :root {
@@ -55,7 +56,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: #7a13f0;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -81,6 +82,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --gradient-primary: linear-gradient(to right, var(--primary), color-mix(in oklch, var(--primary) 30%, transparent));
 }
 
 .dark {
@@ -90,7 +92,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
+  --primary: #7a13f0;
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -115,6 +117,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --gradient-primary: linear-gradient(to right, var(--primary), color-mix(in oklch, var(--primary) 30%, transparent));
 }
 
 @layer base {
@@ -126,5 +129,43 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer components {
+  .gradient-hover {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease;
+    color: black;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0;
+      background: linear-gradient(90deg, #7a13f0 50%, #aa7dff 100%);
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+    
+    /* Show gradient on hover AND when active */
+    &:hover::before,
+    &.active::before {
+      opacity: 1;
+    }
+    
+    /* Text color: white on hover or active */
+    &:hover,
+    &.active {
+      color: white;
+    }
+    
+    /* Keep children above the gradient */
+    & > * {
+      position: relative;
+      z-index: 1;
+    }
   }
 }
