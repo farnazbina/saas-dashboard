@@ -5,11 +5,14 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* متغیرهای اصلی پروژه */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-google-sans);
   --font-mono: var(--font-google-sans);
   --font-heading: var(--font-sans);
+  
+  /* متغیرهای shadcn/ui */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -47,13 +50,52 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
   --gradient-primary: var(--gradient-primary);
-  --color-success: var(--success);
-  --color-info: var(--info);
-  --color-dark-green: var(--dark-green);
   --color-background-layout: var(--background-layout);
+
+  /* ========== رنگ‌های سفارشی وضعیت‌ها (Status) ========== */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-muted: var(--success-muted);
+  
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-muted: var(--info-muted);
+  
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-muted: var(--warning-muted);
+  
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+  --color-error-muted: var(--error-muted);
+
+  /* ========== رنگ‌های سفارشی ۵ نوع تسک (Task Types) ========== */
+  --color-task-feature: var(--task-feature);
+  --color-task-feature-foreground: var(--task-feature-foreground);
+  --color-task-feature-muted: var(--task-feature-muted);
+  
+  --color-task-bug: var(--task-bug);
+  --color-task-bug-foreground: var(--task-bug-foreground);
+  --color-task-bug-muted: var(--task-bug-muted);
+  
+  --color-task-design: var(--task-design);
+  --color-task-design-foreground: var(--task-design-foreground);
+  --color-task-design-muted: var(--task-design-muted);
+  
+  --color-task-research: var(--task-research);
+  --color-task-research-foreground: var(--task-research-foreground);
+  --color-task-research-muted: var(--task-research-muted);
+  
+  --color-task-testing: var(--task-testing);
+  --color-task-testing-foreground: var(--task-testing-foreground);
+  --color-task-testing-muted: var(--task-testing-muted);
 }
 
+/* ============================================ */
+/* 1. حالت لایت (پیش‌فرض)                      */
+/* ============================================ */
 :root {
+  /* متغیرهای اصلی shadcn/ui (بدون تغییر) */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -87,13 +129,52 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --gradient-primary: linear-gradient(to right, var(--primary), color-mix(in oklch, var(--primary) 30%, transparent));
-  --success: #2fd896 ;
-  --info: #155dfc;
-  --dark-green: #00786f;
   --background-layout: #f9fafb;
+
+  /* ========== وضعیت‌ها (Status) – لایت ========== */
+  --success: #22C55E;                 /* سبز اصلی */
+  --success-foreground: #FFFFFF;
+  --success-muted: #DCFCE7;           /* سبز بسیار روشن */
+
+  --info: #3B82F6;                    /* آبی اصلی */
+  --info-foreground: #FFFFFF;
+  --info-muted: #DBEAFE;              /* آبی بسیار روشن */
+
+  --warning: #EAB308;                 /* زرد اصلی */
+  --warning-foreground: #FFFFFF;
+  --warning-muted: #FEF08A;           /* زرد بسیار روشن */
+
+  --error: #EF4444;                   /* قرمز اصلی */
+  --error-foreground: #FFFFFF;
+  --error-muted: #FEE2E2;             /* قرمز بسیار روشن */
+
+  /* ========== ۵ نوع تسک (Task Types) – لایت ========== */
+  --task-feature: #8B5CF6;            /* بنفش */
+  --task-feature-foreground: #FFFFFF;
+  --task-feature-muted: #EDE9FE;      /* بنفش بسیار روشن */
+
+  --task-bug: #F43F5E;                /* رز/قرمز-صورتی */
+  --task-bug-foreground: #FFFFFF;
+  --task-bug-muted: #FFE4E6;          /* رز بسیار روشن */
+
+  --task-design: #06B6D4;             /* فیروزه‌ای */
+  --task-design-foreground: #FFFFFF;
+  --task-design-muted: #CFFAFE;       /* فیروزه‌ای بسیار روشن */
+
+  --task-research: #F59E0B;           /* کهربایی */
+  --task-research-foreground: #FFFFFF;
+  --task-research-muted: #FEF3C7;     /* کهربایی بسیار روشن */
+
+  --task-testing: #10B981;            /* زمردی */
+  --task-testing-foreground: #FFFFFF;
+  --task-testing-muted: #D1FAE5;      /* زمردی بسیار روشن */
 }
 
+/* ============================================ */
+/* 2. حالت دارک (با کلاس dark روی <html>)     */
+/* ============================================ */
 .dark {
+  /* متغیرهای اصلی shadcn/ui (بدون تغییر) */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -126,10 +207,45 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
   --gradient-primary: linear-gradient(to right, var(--primary), color-mix(in oklch, var(--primary) 30%, transparent));
-  --success: #2fd896 ;
-  --info: #155dfc;
-  --dark-green: #00786f;
-  --background-layout: #f9fafb;
+  --background-layout: #111827;       /* پس‌زمینه تیره‌تر برای دارک */
+
+  /* ========== وضعیت‌ها (Status) – دارک (نسخه روشن‌تر) ========== */
+  --success: #4ADE80;                 /* سبز روشن‌تر برای خوانایی */
+  --success-foreground: #FFFFFF;
+  --success-muted: #166534;           /* پس‌زمینه تیره برای دارک */
+
+  --info: #60A5FA;                    /* آبی روشن‌تر */
+  --info-foreground: #FFFFFF;
+  --info-muted: #1E3A8A;              /* پس‌زمینه تیره */
+
+  --warning: #FBBF24;                 /* زرد روشن‌تر */
+  --warning-foreground: #000000;      /* متن تیره برای کنتراست */
+  --warning-muted: #78350F;           /* پس‌زمینه تیره */
+
+  --error: #F87171;                   /* قرمز روشن‌تر */
+  --error-foreground: #FFFFFF;
+  --error-muted: #7F1D1D;             /* پس‌زمینه تیره */
+
+  /* ========== ۵ نوع تسک (Task Types) – دارک ========== */
+  --task-feature: #A78BFA;            /* بنفش روشن‌تر */
+  --task-feature-foreground: #FFFFFF;
+  --task-feature-muted: #2E1065;      /* پس‌زمینه تیره */
+
+  --task-bug: #FB7185;                /* رز روشن‌تر */
+  --task-bug-foreground: #FFFFFF;
+  --task-bug-muted: #4C0519;          /* پس‌زمینه تیره */
+
+  --task-design: #22D3EE;             /* فیروزه‌ای روشن‌تر */
+  --task-design-foreground: #FFFFFF;
+  --task-design-muted: #0C4A6E;       /* پس‌زمینه تیره */
+
+  --task-research: #FBBF24;           /* کهربایی روشن‌تر (همان زرد) */
+  --task-research-foreground: #000000; /* متن تیره برای کنتراست */
+  --task-research-muted: #78350F;     /* پس‌زمینه تیره */
+
+  --task-testing: #34D399;            /* زمردی روشن‌تر */
+  --task-testing-foreground: #FFFFFF;
+  --task-testing-muted: #064E3B;      /* پس‌زمینه تیره */
 }
 
 @layer base {
