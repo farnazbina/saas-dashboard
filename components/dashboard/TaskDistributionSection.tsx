@@ -22,7 +22,7 @@ import {
 export const description = "A donut chart with text"
 
 const chartData = [
-    { browser: "chrome", visitors: 275, fill: "#7a13f0" },
+    { browser: "", visitors: 275, fill: "#7a13f0" },
     { browser: "safari", visitors: 200, fill: "#aa7dff" },
     { browser: "firefox", visitors: 287, fill: "#19724f" },
     { browser: "edge", visitors: 173, fill: "#155dfc" },
