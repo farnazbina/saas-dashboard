@@ -22,11 +22,11 @@ import {
 export const description = "A donut chart with text"
 
 const chartData = [
-    { browser: "", visitors: 275, fill: "#7a13f0" },
-    { browser: "safari", visitors: 200, fill: "#aa7dff" },
-    { browser: "firefox", visitors: 287, fill: "#19724f" },
-    { browser: "edge", visitors: 173, fill: "#155dfc" },
-    { browser: "other", visitors: 190, fill: "#ff6b6b" },
+    { browser: "To Do", visitors: 275, fill: "var(--task-todo)" },
+    { browser: "In Progress", visitors: 200, fill: "var(--task-progress)" },
+    { browser: "In Review", visitors: 287, fill: "var(--task-inreview)" },
+    { browser: "Done", visitors: 173, fill: "var(--task-done)" },
+    { browser: "Blocked", visitors: 190, fill: "var(--task-blocked)" },
 ]
 
 const chartConfig = {

@@ -70,25 +70,25 @@
   --color-error-muted: var(--error-muted);
 
   /* ========== رنگ‌های سفارشی ۵ نوع تسک (Task Types) ========== */
-  --color-task-feature: var(--task-feature);
-  --color-task-feature-foreground: var(--task-feature-foreground);
-  --color-task-feature-muted: var(--task-feature-muted);
+  --color-task-progress: var(--task-progress);
+  --color-task-progress-foreground: var(--task-progress-foreground);
+  --color-task-progress-muted: var(--task-progress-muted);
   
-  --color-task-bug: var(--task-bug);
-  --color-task-bug-foreground: var(--task-bug-foreground);
-  --color-task-bug-muted: var(--task-bug-muted);
+  --color-task-blocked: var(--task-blocked);
+  --color-task-blocked-foreground: var(--task-blocked-foreground);
+  --color-task-blocked-muted: var(--task-blocked-muted);
   
-  --color-task-design: var(--task-design);
-  --color-task-design-foreground: var(--task-design-foreground);
-  --color-task-design-muted: var(--task-design-muted);
+  --color-task-todo: var(--task-todo);
+  --color-task-todo-foreground: var(--task-todo-foreground);
+  --color-task-todo-muted: var(--task-todo-muted);
   
-  --color-task-research: var(--task-research);
-  --color-task-research-foreground: var(--task-research-foreground);
-  --color-task-research-muted: var(--task-research-muted);
+  --color-task-inreview: var(--task-inreview);
+  --color-task-inreview-foreground: var(--task-inreview-foreground);
+  --color-task-inreview-muted: var(--task-inreview-muted);
   
-  --color-task-testing: var(--task-testing);
-  --color-task-testing-foreground: var(--task-testing-foreground);
-  --color-task-testing-muted: var(--task-testing-muted);
+  --color-task-done: var(--task-done);
+  --color-task-done-foreground: var(--task-done-foreground);
+  --color-task-done-muted: var(--task-done-muted);
 }
 
 /* ============================================ */
@@ -149,25 +149,25 @@
   --error-muted: #FEE2E2;             /* قرمز بسیار روشن */
 
   /* ========== ۵ نوع تسک (Task Types) – لایت ========== */
-  --task-feature: #8B5CF6;            /* بنفش */
-  --task-feature-foreground: #FFFFFF;
-  --task-feature-muted: #EDE9FE;      /* بنفش بسیار روشن */
+  --task-progress: #8B5CF6;            /* بنفش */
+  --task-progress-foreground: #FFFFFF;
+  --task-progress-muted: #EDE9FE;      /* بنفش بسیار روشن */
 
-  --task-bug: #F43F5E;                /* رز/قرمز-صورتی */
-  --task-bug-foreground: #FFFFFF;
-  --task-bug-muted: #FFE4E6;          /* رز بسیار روشن */
+  --task-blocked: #F43F5E;                /* رز/قرمز-صورتی */
+  --task-blocked-foreground: #FFFFFF;
+  --task-blocked-muted: #FFE4E6;          /* رز بسیار روشن */
 
-  --task-design: #06B6D4;             /* فیروزه‌ای */
-  --task-design-foreground: #FFFFFF;
-  --task-design-muted: #CFFAFE;       /* فیروزه‌ای بسیار روشن */
+  --task-todo: #06B6D4;             /* فیروزه‌ای */
+  --task-todo-foreground: #FFFFFF;
+  --task-todo-muted: #CFFAFE;       /* فیروزه‌ای بسیار روشن */
 
-  --task-research: #F59E0B;           /* کهربایی */
-  --task-research-foreground: #FFFFFF;
-  --task-research-muted: #FEF3C7;     /* کهربایی بسیار روشن */
+  --task-inreview: #F59E0B;           /* کهربایی */
+  --task-inreview-foreground: #FFFFFF;
+  --task-inreview-muted: #FEF3C7;     /* کهربایی بسیار روشن */
 
-  --task-testing: #10B981;            /* زمردی */
-  --task-testing-foreground: #FFFFFF;
-  --task-testing-muted: #D1FAE5;      /* زمردی بسیار روشن */
+  --task-done: #10B981;            /* زمردی */
+  --task-done-foreground: #FFFFFF;
+  --task-done-muted: #D1FAE5;      /* زمردی بسیار روشن */
 }
 
 /* ============================================ */
@@ -227,25 +227,25 @@
   --error-muted: #7F1D1D;             /* پس‌زمینه تیره */
 
   /* ========== ۵ نوع تسک (Task Types) – دارک ========== */
-  --task-feature: #A78BFA;            /* بنفش روشن‌تر */
-  --task-feature-foreground: #FFFFFF;
-  --task-feature-muted: #2E1065;      /* پس‌زمینه تیره */
+  --task-progress: #A78BFA;            /* بنفش روشن‌تر */
+  --task-progress-foreground: #FFFFFF;
+  --task-progress-muted: #2E1065;      /* پس‌زمینه تیره */
 
-  --task-bug: #FB7185;                /* رز روشن‌تر */
-  --task-bug-foreground: #FFFFFF;
-  --task-bug-muted: #4C0519;          /* پس‌زمینه تیره */
+  --task-blocked: #FB7185;                /* رز روشن‌تر */
+  --task-blocked-foreground: #FFFFFF;
+  --task-blocked-muted: #4C0519;          /* پس‌زمینه تیره */
 
-  --task-design: #22D3EE;             /* فیروزه‌ای روشن‌تر */
-  --task-design-foreground: #FFFFFF;
-  --task-design-muted: #0C4A6E;       /* پس‌زمینه تیره */
+  --task-todo: #22D3EE;             /* فیروزه‌ای روشن‌تر */
+  --task-todo-foreground: #FFFFFF;
+  --task-todo-muted: #0C4A6E;       /* پس‌زمینه تیره */
 
-  --task-research: #FBBF24;           /* کهربایی روشن‌تر (همان زرد) */
-  --task-research-foreground: #000000; /* متن تیره برای کنتراست */
-  --task-research-muted: #78350F;     /* پس‌زمینه تیره */
+  --task-inreview: #FBBF24;           /* کهربایی روشن‌تر (همان زرد) */
+  --task-inreview-foreground: #000000; /* متن تیره برای کنتراست */
+  --task-inreview-muted: #78350F;     /* پس‌زمینه تیره */
 
-  --task-testing: #34D399;            /* زمردی روشن‌تر */
-  --task-testing-foreground: #FFFFFF;
-  --task-testing-muted: #064E3B;      /* پس‌زمینه تیره */
+  --task-done: #34D399;            /* زمردی روشن‌تر */
+  --task-done-foreground: #FFFFFF;
+  --task-done-muted: #064E3B;      /* پس‌زمینه تیره */
 }
 
 @layer base {

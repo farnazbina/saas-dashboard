@@ -21,12 +21,12 @@ import {
 export const description = "A horizontal bar chart"
 
 const chartData = [
-    { month: "January", desktop: 186, fill: "#7a13f0" },
-    { month: "February", desktop: 305, fill: "#aa7dff" },
-    { month: "March", desktop: 237, fill: "#19724f" },
-    { month: "April", desktop: 73, fill: "#155dfc" },
-    { month: "May", desktop: 209, fill: "#00786f" },
-    { month: "June", desktop: 214, fill: "#ff6b6b" },
+    { month: "Website Redesign", desktop: 186, fill: "var(--task-todo)" },
+    { month: "Mobile App", desktop: 305, fill: "var(--task-progress)" },
+    { month: "API Gateway", desktop: 237, fill: "var(--task-inreview)" },
+    { month: "Dashboard v2", desktop: 73, fill: "var(--task-blocked)" },
+    { month: "Auth system", desktop: 209, fill: "var(--task-todo)" },
+    { month: "Payment Module", desktop: 214, fill: "var(--task-inreview)" },
 ]
 
 const chartConfig = {
