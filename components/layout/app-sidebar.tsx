@@ -39,11 +39,11 @@ export default function AppSidebar() {
         }
     ]
     return (
-        <Sidebar className="py-6 px-4 bg-white">
-            <SidebarHeader className="bg-white">
+        <Sidebar className="py-6 px-4 bg-background">
+            <SidebarHeader className="bg-background">
                 <Link href='/dashboard/overview' className="text-lg font-semibold">Dreams <span className="text-primary">Dashboard</span></Link>
             </SidebarHeader>
-            <SidebarContent className="bg-white pt-4">
+            <SidebarContent className="bg-background pt-4">
                 <SidebarGroup>
                     <SidebarMenu className="gap-y-1">
                         {menu.map((item, index) => {
@@ -51,9 +51,9 @@ export default function AppSidebar() {
                             return(
                             <SidebarMenuItem key={index}>
                                 <SidebarMenuButton
-                                    className={`h-12 w-full gradient-hover hover:text-white duration-300 transition-colors ${isActive ? 'active' : ''}`}
+                                    className={`h-12 w-full gradient-hover text-text hover:text-white duration-300 transition-colors ${isActive ? 'active' : ''}`}
                                 >
-                                    <Link href={item.link} className="h-full w-full cursor-pointer flex items-center gap-4 text-base font-medium">
+                                    <Link href={item.link} className="h-full w-full text-text cursor-pointer flex items-center gap-4 text-base font-medium">
                                         {item.icon}
                                         {item.text}
                                     </Link>

@@ -37,7 +37,7 @@ const OverviewSection = () => {
             value: 12,
             progress: 12,
             label: 'Delivery Rate',
-            color: 'bg-dark-green'
+            color: 'bg-task-inreview'
         },
     ]
     return (

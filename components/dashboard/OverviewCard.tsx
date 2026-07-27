@@ -11,7 +11,7 @@ type Props = {
 
 const OverviewCard = ({ title, icon, value, progress, label, color }: Props) => {
     return (
-        <div className="rounded-lg flex flex-col bg-white border border-solid border-muted">
+        <div className="rounded-lg flex flex-col bg-card border border-solid border-muted">
             <div className={`heading rounded-lg flex items-center px-5 py-7 gap-3 ${color}`}>
                 {icon}
                 <span className="text-white text-md font-medium">{title}</span>
