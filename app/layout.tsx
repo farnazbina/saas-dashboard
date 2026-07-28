@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Google_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { ModalProvider } from "@/components/modals/modalProvider";
 
 
 const googleSans = Google_Sans({
@@ -30,9 +31,12 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
+          scriptProps={{
+            "data-cfasync": "false", // افزودن این خط برای رفع هشدار
+          }}
         >
           {children}
+          <ModalProvider />
         </ThemeProvider>
       </body>
     </html>
