@@ -1,0 +1,71 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  projects  Project[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Client {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?  @unique
+  phone     String?
+  company   String?
+  projects  Project[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  avatar    String?  // آدرس عکس پروفایل (اختیاری)
+  role      Role     @default(MEMBER) // برای تمایز تیم لید و عضو
+  // پروژه‌هایی که این کاربر تیم لید آنهاست
+  ledProjects Project[] @relation("TeamLead")
+  // پروژه‌هایی که این کاربر عضو تیم آنهاست
+  memberProjects Project[] @relation("TeamMembers")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  TEAM_LEAD
+  MEMBER
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  status      Status   @default(TODO)
+  // روابط
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id])
+  teamLeadId  String   // ارجاع به User
+  teamLead    User     @relation("TeamLead", fields: [teamLeadId], references: [id])
+  // اعضای تیم (many-to-many)
+  members     User[]   @relation("TeamMembers")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum Status {
+  TODO
+  In_PROGRESS
+  DONE
+}
