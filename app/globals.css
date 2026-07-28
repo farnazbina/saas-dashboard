@@ -290,7 +290,7 @@
     /* Text color: white on hover or active */
     &:hover,
     &.active {
-      color: white;
+      color: white !important;
     }
     
     /* Keep children above the gradient */
