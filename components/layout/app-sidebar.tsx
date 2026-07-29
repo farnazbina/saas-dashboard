@@ -19,22 +19,22 @@ export default function AppSidebar() {
     const menu = [
         {
             text: 'Dashboard',
-            link: '/dashboard/overview',
+            link: '/overview',
             icon: <LayoutDashboard />
         },
         {
             text: 'Analytics',
-            link: '/dashboard/analytics',
+            link: '/analytics',
             icon: <ChartBar />
         },
         {
             text: 'Projects',
-            link: '/dashboard/projects',
+            link: '/projects',
             icon: <FolderKanban />
         },
         {
             text: 'Teams',
-            link: '/dashboard/teams',
+            link: '/teams',
             icon: <Users />
         }
     ]

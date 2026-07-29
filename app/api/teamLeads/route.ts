@@ -3,11 +3,11 @@ import prisma from '@/lib/prisma'
 
 export async function GET() {
     try {
-        const categories = await prisma.category.findMany()
+        const teamLeads = await prisma.teamLead.findMany()
         
-        return NextResponse.json(categories)
+        return NextResponse.json(teamLeads)
     } catch (error) {
-        console.error('Error fetching from categories.')
+        console.error('Error fetching from teamLeads.')
         return NextResponse.json({ error: 'Failed to load data.' }, { status: 500 })
     }
 }

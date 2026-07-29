@@ -3,9 +3,9 @@ import prisma from '@/lib/prisma'
 
 export async function GET() {
     try {
-        const categories = await prisma.category.findMany()
+        const users = await prisma.user.findMany()
         
-        return NextResponse.json(categories)
+        return NextResponse.json(users)
     } catch (error) {
         console.error('Error fetching from categories.')
         return NextResponse.json({ error: 'Failed to load data.' }, { status: 500 })
