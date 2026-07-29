@@ -3,6 +3,7 @@ import { Google_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { ModalProvider } from "@/components/modals/modalProvider";
+import QueryProviders from "@/providers/react-query";
 
 
 const googleSans = Google_Sans({
@@ -24,20 +25,23 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${googleSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          scriptProps={{
-            "data-cfasync": "false", // افزودن این خط برای رفع هشدار
-          }}
-        >
-          {children}
-          <ModalProvider />
-        </ThemeProvider>
+        <QueryProviders>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            scriptProps={{
+              "data-cfasync": "false", // افزودن این خط برای رفع هشدار
+            }}
+          >
+            {children}
+            <ModalProvider />
+          </ThemeProvider>
+        </QueryProviders>
       </body>
     </html>
   );

@@ -31,7 +31,7 @@ export const ModalProvider = () => {
 
     return (
         <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="w-xl">
                 <ModalComponent isOpen={isOpen} onClose={onClose} data={data} />
             </DialogContent>
         </Dialog>
