@@ -30,10 +30,10 @@ export function useUsers() {
     })
 }
 
-export function useTeamLeads() {
-    return useQuery({
-        queryKey: ['teamLeads'],
-        queryFn: () => fetcher('/api/teamLeads'),
-        staleTime: Infinity
-    })
+export function useProjects() {
+  return useQuery({
+    queryKey: ['projects'],
+    queryFn: () => fetch('/api/projects').then(res => res.json()),
+    staleTime: 5 * 60 * 1000, // ۵ دقیقه کش معتبر
+  })
 }

@@ -31,7 +31,7 @@ import {
     InputGroupTextarea,
 } from "@/components/ui/input-group"
 
-import { useCategories, useClients, useTeamLeads, useUsers } from "@/lib/queries"
+import { useCategories, useClients, useUsers } from "@/lib/queries"
 import { createProject } from "@/app/actions/project.actions"
 
 // ---------- 1. تعریف Schema با فیلدهای کامل ----------
@@ -52,7 +52,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>
 type Client = { id: string; name: string; company?: string }
-type User = { id: string; name: string; email: string }
+type User = { id: string; name: string; email: string; role: 'ADMIN' | 'TEAM_LEAD' | 'MEMBER' }
 
 interface CreateProjectModalProps {
     onClose: () => void
@@ -74,8 +74,11 @@ export default function CreateProjectModal({ onClose }: CreateProjectModalProps)
     // دریافت داده‌ها
     const { data: categories = [], isPending: categoriesPending } = useCategories()
     const { data: clients = [], isPending: clientsPending } = useClients()
-    const { data: teamLeads = [], isPending: teamLeadsPending } = useTeamLeads()
     const { data: users = [], isPending: usersPending } = useUsers()
+    console.log(categories, clients, users)
+
+    const teamLeads = users.filter((user: User) => user.role === 'TEAM_LEAD')
+    const members = users.filter((user: User) => user.role === 'MEMBER')
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -84,8 +87,8 @@ export default function CreateProjectModal({ onClose }: CreateProjectModalProps)
             description: "",
             categoryId: "",
             clientId: "",
-            teamLeadId: "",
             memberId: "",
+            teamLeadId: "",
         },
     })
 
@@ -99,9 +102,8 @@ export default function CreateProjectModal({ onClose }: CreateProjectModalProps)
             formData.append("description", values.description)
             formData.append("categoryId", values.categoryId)
             formData.append("clientId", values.clientId)
-            formData.append("teamLeadId", values.teamLeadId)
             formData.append("memberId", values.memberId)
-
+            formData.append("teamLeadId", values.teamLeadId)
             const result = await createProject(formData)
 
             if (result.success) {
@@ -123,7 +125,7 @@ export default function CreateProjectModal({ onClose }: CreateProjectModalProps)
     }
 
     // ---------- وضعیت لودینگ کلی ----------
-    const loading = categoriesPending || clientsPending || teamLeadsPending || usersPending
+    const loading = categoriesPending || clientsPending || usersPending
 
     return (
         <Card className="w-xl max-h-[90vh] overflow-y-auto">
@@ -136,7 +138,6 @@ export default function CreateProjectModal({ onClose }: CreateProjectModalProps)
             <CardContent>
                 <form id="create-project-form" onSubmit={form.handleSubmit(onSubmit)}>
                     <FieldGroup className="space-y-4">
-                        {/* ----- نام پروژه ----- */}
                         <Controller
                             name="name"
                             control={form.control}
@@ -157,9 +158,7 @@ export default function CreateProjectModal({ onClose }: CreateProjectModalProps)
                             )}
                         />
 
-                        {/* ----- دو ستونه برای سلکت‌باکس‌ها ----- */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            {/* ----- دسته‌بندی (Category) ----- */}
                             <Controller
                                 name="categoryId"
                                 control={form.control}
@@ -191,7 +190,6 @@ export default function CreateProjectModal({ onClose }: CreateProjectModalProps)
                                 )}
                             />
 
-                            {/* ----- مشتری (Client) ----- */}
                             <Controller
                                 name="clientId"
                                 control={form.control}
@@ -224,7 +222,6 @@ export default function CreateProjectModal({ onClose }: CreateProjectModalProps)
                             />
                         </div>
 
-                        {/* ----- تیم لید (Team Lead) ----- */}
                         <Controller
                             name="teamLeadId"
                             control={form.control}
@@ -256,9 +253,8 @@ export default function CreateProjectModal({ onClose }: CreateProjectModalProps)
                             )}
                         />
 
-                        {/* ----- اعضای تیم (چند انتخابی) ----- */}
                         <Controller
-                            name="memberId"   // ← نام فیلد تغییر کرد
+                            name="memberId"
                             control={form.control}
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
@@ -276,7 +272,7 @@ export default function CreateProjectModal({ onClose }: CreateProjectModalProps)
                                             disabled={isPending}
                                         >
                                             <option value="">Select a team member</option>
-                                            {users.map((member: User) => (
+                                            {members.map((member: User) => (
                                                 <option key={member.id} value={member.id}>
                                                     {member.name} ({member.email})
                                                 </option>
@@ -288,7 +284,6 @@ export default function CreateProjectModal({ onClose }: CreateProjectModalProps)
                             )}
                         />
 
-                        {/* ----- توضیحات ----- */}
                         <Controller
                             name="description"
                             control={form.control}

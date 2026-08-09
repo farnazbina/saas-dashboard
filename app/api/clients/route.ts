@@ -7,7 +7,7 @@ export async function GET() {
         
         return NextResponse.json(clients)
     } catch (error) {
-        console.error('Error fetching from categories.')
+        console.error('Error fetching from clients.')
         return NextResponse.json({ error: 'Failed to load data.' }, { status: 500 })
     }
 }

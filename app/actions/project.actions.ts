@@ -1,7 +1,8 @@
 'use server'
 
 import prisma from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag, unstable_cache } from "next/cache";
+import { cache } from "react";
 import z, { success } from "zod";
 
 const projectSchema = z.object({
@@ -47,6 +48,7 @@ export async function createProject(formData: FormData) {
         })
 
         // به‌روزرسانی کش صفحه‌ی پروژه‌ها
+        revalidateTag('projects-list')
         revalidatePath('/projects')
 
         return {
@@ -134,20 +136,22 @@ export async function deleteProject(id: string) {
 }
 
 // ---------- دریافت یک پروژه برای ویرایش (اختیاری) ----------
-export async function getProject(id: string) {
-    try {
-        const project = await prisma.project.findUnique({
-            where: { id },
-            include: {
-                category: true,
-                client: true,
-                teamLead: true,
-                members: true,
+export const getProjects = unstable_cache(
+    async () => {
+        console.log('🔵 Fetching projects from database...')
+        return await prisma.project.findMany({
+            select: {
+                id: true,
+                name: true,
+                status: true,
+                category: { select: { name: true } },
+                client: { select: { name: true } },
+                teamLead: { select: { name: true } },
+                member: { select: { name: true } },
             },
+            orderBy: { createdAt: 'desc' },
         })
-        return project
-    } catch (error) {
-        console.error('Error fetching project:', error)
-        return null
-    }
-}
+    },
+    ['projects-list'],
+    { revalidate: 3600 } // هر ۶۰ ثانیه یکبار کش به‌روز میشه
+)

@@ -6,12 +6,18 @@ datasource db {
   provider = "postgresql"
 }
 
+// ==============================
+//  مدل‌های پایه
+// ==============================
+
 model Category {
   id        String   @id @default(cuid())
   name      String   @unique
   projects  Project[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("categories")
 }
 
 model Client {
@@ -23,6 +29,18 @@ model Client {
   projects  Project[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("clients")
+}
+
+// ==============================
+//  مدل کاربر یکپارچه (جایگزین TeamLead)
+// ==============================
+
+enum Role {
+  ADMIN
+  TEAM_LEAD
+  MEMBER
 }
 
 model User {
@@ -31,16 +49,26 @@ model User {
   email     String   @unique
   avatar    String?
   role      Role     @default(MEMBER)
-  // پروژه‌هایی که این کاربر عضو آنهاست
+
+  // پروژه‌هایی که این کاربر به عنوان تیم‌لید در آنهاست
+  leadProjects Project[] @relation("TeamLeadProjects")
+  // پروژه‌هایی که این کاربر به عنوان عضو معمولی در آنهاست
   memberProjects Project[] @relation("TeamMembers")
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("users")
 }
 
-enum Role {
-  ADMIN
-  TEAM_LEAD
-  MEMBER
+// ==============================
+//  مدل پروژه (با ایندکس‌های بهینه)
+// ==============================
+
+enum Status {
+  TODO
+  IN_PROGRESS   // تغییر از In_PROGRESS به IN_PROGRESS (استاندارد)
+  DONE
 }
 
 model Project {
@@ -48,30 +76,29 @@ model Project {
   name        String
   description String?
   status      Status   @default(TODO)
+
+  // کلیدهای خارجی
   categoryId  String
-  category    Category @relation(fields: [categoryId], references: [id])
   clientId    String
+  teamLeadId  String   // ارجاع به User با نقش TEAM_LEAD
+  memberId    String   // ارجاع به User با نقش MEMBER (یا هر نقش دیگر)
+
+  // روابط
+  category    Category @relation(fields: [categoryId], references: [id])
   client      Client   @relation(fields: [clientId], references: [id])
-  teamLeadId  String
-  teamLead    TeamLead @relation(fields: [teamLeadId], references: [id])
-  memberId    String   // 👈 فیلد ارجاع به User
+  teamLead    User     @relation("TeamLeadProjects", fields: [teamLeadId], references: [id])
   member      User     @relation("TeamMembers", fields: [memberId], references: [id])
+
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-}
 
-enum Status {
-  TODO
-  In_PROGRESS
-  DONE
-}
+  // ---------- ایندکس‌های بهینه ----------
+  @@index([createdAt(sort: Desc)])  // برای مرتب‌سازی سریع
+  @@index([categoryId])             // برای JOIN با Category
+  @@index([clientId])               // برای JOIN با Client
+  @@index([teamLeadId])             // برای JOIN با User (تیم‌لید)
+  @@index([memberId])               // برای JOIN با User (عضو)
+  @@index([status])                 // اگر بر اساس status فیلتر می‌کنید
 
-model TeamLead {
-  id        String   @id @default(cuid())
-  name      String
-  email     String?  @unique
-  phone     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  projects  Project[]
+  @@map("projects")
 }

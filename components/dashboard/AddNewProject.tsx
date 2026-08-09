@@ -16,7 +16,6 @@ const AddNewProject = () => {
             ['categories'],
             ['clients'],
             ['users'],
-            ['teamLeads'],
         ];
 
         queryKeys.forEach((key) => {
