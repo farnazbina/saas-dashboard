@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Google_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
-import { ModalProvider } from "@/components/modals/modalProvider";
+// import { ModalProvider } from "@/components/modals/modalProvider";
 import QueryProviders from "@/providers/react-query";
 
 
@@ -39,7 +39,7 @@ export default function RootLayout({
             }}
           >
             {children}
-            <ModalProvider />
+            {/* <ModalProvider /> */}
           </ThemeProvider>
         </QueryProviders>
       </body>

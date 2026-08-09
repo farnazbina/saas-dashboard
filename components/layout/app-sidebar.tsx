@@ -9,7 +9,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { LayoutDashboard, ChartBar, FolderKanban, Users } from "lucide-react"
+import { LayoutDashboard, SquareKanban, FolderKanban, Users, Settings } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -23,23 +23,28 @@ export default function AppSidebar() {
             icon: <LayoutDashboard />
         },
         {
-            text: 'Analytics',
-            link: '/analytics',
-            icon: <ChartBar />
-        },
-        {
             text: 'Projects',
             link: '/projects',
             icon: <FolderKanban />
         },
         {
+            text: 'Kanban Board',
+            link: '/kanban-board',
+            icon: <SquareKanban />
+        },
+        {
             text: 'Teams',
             link: '/teams',
             icon: <Users />
+        },
+        {
+            text: 'Settings',
+            link: '/settings',
+            icon: <Settings />
         }
     ]
     return (
-        <Sidebar className="py-6 px-4 bg-background">
+        <Sidebar className="py-6 px-4 bg-background hidden lg:flex">
             <SidebarHeader className="bg-background">
                 <Link href='/dashboard/overview' className="text-lg font-semibold">Dreams <span className="text-primary">Dashboard</span></Link>
             </SidebarHeader>
@@ -51,9 +56,9 @@ export default function AppSidebar() {
                             return(
                             <SidebarMenuItem key={index}>
                                 <SidebarMenuButton
-                                    className={`h-12 w-full gradient-hover text-text hover:text-white duration-300 transition-colors ${isActive ? 'active' : ''}`}
+                                    className={`h-11 w-full gradient-hover text-text hover:text-white duration-300 transition-colors ${isActive ? 'active' : ''}`}
                                 >
-                                    <Link href={item.link} className="h-full w-full text-text cursor-pointer flex items-center gap-4 text-base font-medium">
+                                    <Link href={item.link} className="h-11 w-full text-text cursor-pointer flex items-center gap-x-4 text-[16px] font-regular">
                                         {item.icon}
                                         {item.text}
                                     </Link>

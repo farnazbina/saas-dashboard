@@ -1,12 +1,9 @@
 'use client'
-
-import { Button } from "@/components/ui/button";
-import { useModalStore } from "@/stores/modalStore";
 import { Plus } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
+import Link from "next/link";
 
 const AddNewProject = () => {
-    const { onOpen } = useModalStore();
     const queryClient = useQueryClient();
 
     // تابع پیش‌بارگذاری همه داده‌های مورد نیاز مودال
@@ -28,13 +25,13 @@ const AddNewProject = () => {
     };
 
     return (
-        <Button
-            size="lg"
-            onClick={() => onOpen('createProject')}
-            onMouseEnter={prefetchModalData} // 👈 هنگام هاور، داده‌ها دریافت می‌شوند
+        <Link
+            href='/projects/create'
+            className="flex items-center gap-x-1 bg-primary rounded-sm px-4 py-2 text-white text-sm"
+            onMouseEnter={prefetchModalData}
         >
-            <Plus /> New Project
-        </Button>
+            <Plus size={14} /> New Project
+        </Link>
     );
 };
 
