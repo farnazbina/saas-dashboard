@@ -137,6 +137,7 @@ export default function CreateProjectPage() {
                                 placeholder="e.g. E-commerce Platform"
                                 aria-invalid={fieldState.invalid}
                                 disabled={isPending}
+                                className="bg-white"
                             />
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>

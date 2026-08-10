@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/card"
 import {
     ChartContainer,
+    ChartLegend,
+    ChartLegendContent,
     ChartTooltip,
     ChartTooltipContent,
     type ChartConfig,
@@ -22,36 +24,36 @@ import {
 export const description = "A donut chart with text"
 
 const chartData = [
-    { browser: "To Do", visitors: 275, fill: "var(--task-todo)" },
-    { browser: "In Progress", visitors: 200, fill: "var(--task-progress)" },
-    { browser: "In Review", visitors: 287, fill: "var(--task-inreview)" },
-    { browser: "Done", visitors: 173, fill: "var(--task-done)" },
-    { browser: "Blocked", visitors: 190, fill: "var(--task-blocked)" },
+    { browser: "To Do", visitors: 7, fill: "var(--task-todo)" },
+    { browser: "In Progress", visitors: 23, fill: "var(--task-progress)" },
+    { browser: "In Review", visitors: 34, fill: "var(--task-inreview)" },
+    { browser: "Done", visitors: 67, fill: "var(--task-done)" },
+    { browser: "Blocked", visitors: 19, fill: "var(--task-blocked)" },
 ]
 
 const chartConfig = {
     visitors: {
         label: "Visitors",
     },
-    chrome: {
-        label: "Chrome",
-        color: "var(--chart-1)",
+    "To Do": {
+        label: "To Do",
+        color: "var(--task-todo)",
     },
-    safari: {
-        label: "Safari",
-        color: "var(--chart-2)",
+    "In Progress": {
+        label: "In Progress",
+        color: "var(--task-progress)",
     },
-    firefox: {
-        label: "Firefox",
-        color: "var(--chart-3)",
+    "In Review": {
+        label: "In Review",
+        color: "var(--task-inreview)",
     },
-    edge: {
-        label: "Edge",
-        color: "var(--chart-4)",
+    "Blocked": {
+        label: "Blocked",
+        color: "var(--task-blocked)",
     },
-    other: {
-        label: "Other",
-        color: "var(--chart-5)",
+    "Done": {
+        label: "Done",
+        color: "var(--task-done)",
     },
 } satisfies ChartConfig
 
@@ -81,8 +83,26 @@ export function TaskDistributionSection() {
                             nameKey="browser"
                             innerRadius={90}
                             strokeWidth={4}
+                            label={({ payload, ...props }) => {
+                                return (
+                                    <text
+                                        cx={props.cx}
+                                        cy={props.cy}
+                                        x={props.x}
+                                        y={props.y}
+                                        textAnchor={props.textAnchor}
+                                        dominantBaseline={props.dominantBaseline}
+                                        fill="var(--foreground)"
+                                    >
+                                        {payload.visitors} %
+                                    </text>
+                                )
+                            }}
+                            labelLine={false}
+
                         >
                             <Label
+                                
                                 content={({ viewBox }) => {
                                     if (viewBox && "cx" in viewBox && "cy" in viewBox) {
                                         return (
@@ -104,7 +124,7 @@ export function TaskDistributionSection() {
                                                     y={(viewBox.cy || 0) + 24}
                                                     className="fill-muted-foreground"
                                                 >
-                                                    Visitors
+                                                    Total Tasks
                                                 </tspan>
                                             </text>
                                         )
@@ -112,6 +132,10 @@ export function TaskDistributionSection() {
                                 }}
                             />
                         </Pie>
+                        <ChartLegend
+                            content={<ChartLegendContent nameKey="browser" />}
+                            className="text-black -translate-y-2 flex-wrap gap-2 *:basis-1/4 *:justify-center"
+                        />
                     </PieChart>
                 </ChartContainer>
             </CardContent>
