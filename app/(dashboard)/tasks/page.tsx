@@ -13,7 +13,7 @@ type TaskStatus = "todo" | "in-progress" | "done" | "blocked" | "in-review";
 type Priority = "low" | "medium" | "high";
 
 interface Task {
-    id: string;
+    id: string | number;
     title: string;
     description: string;
     status: TaskStatus;
@@ -55,7 +55,7 @@ const PRIORITY_LABELS: Record<Priority, string> = {
 // ---------- Mock Data ----------
 const initialTasks: Task[] = [
     {
-        id: "1",
+        id: 1,
         title: "Design homepage",
         description: "Create wireframes and mockups",
         status: "todo",

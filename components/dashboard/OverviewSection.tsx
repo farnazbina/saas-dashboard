@@ -41,7 +41,7 @@ const OverviewSection = () => {
         },
     ]
     return (
-        <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-x-6">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
             {overview.map((item) => (
                 <OverviewCard key={item.id} {...item} />
             ))}

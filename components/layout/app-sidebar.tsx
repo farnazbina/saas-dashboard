@@ -9,7 +9,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { LayoutDashboard, SquareKanban, FolderKanban, Users, Settings } from "lucide-react"
+import { LayoutDashboard, SquareKanban, FolderKanban, Users, Settings, Wallet } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -28,9 +28,19 @@ export default function AppSidebar() {
             icon: <FolderKanban />
         },
         {
-            text: 'Kanban Board',
-            link: '/kanban-board',
+            text: 'Clients',
+            link: '/clients',
+            icon: <Users />
+        },
+        {
+            text: 'Tasks',
+            link: '/tasks',
             icon: <SquareKanban />
+        },
+        {
+            text: 'Invoices',
+            link: '/invoices',
+            icon: <Wallet />
         },
         {
             text: 'Teams',
