@@ -11,7 +11,7 @@
   --font-sans: var(--font-google-sans);
   --font-mono: var(--font-google-sans);
   --font-heading: var(--font-sans);
-  --color-text: var(--text)
+  --color-text: var(--text);
   
   /* متغیرهای shadcn/ui */
   --color-sidebar-ring: var(--sidebar-ring);
