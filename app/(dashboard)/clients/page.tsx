@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { toast } from "sonner";
 import {
     Card,
     CardContent,
@@ -51,6 +52,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
     MoreHorizontal,
     Eye,
@@ -60,6 +62,7 @@ import {
     Search,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 // ---------- Types ----------
 type ClientStatus = "active" | "inactive" | "pending";
@@ -73,6 +76,8 @@ interface Client {
     revenue: number;
     status: ClientStatus;
     createdAt: Date;
+    phone?: string;
+    address?: string;
 }
 
 // ---------- Mock Data ----------
@@ -110,33 +115,23 @@ const mockClients: Client[] = [
     {
         id: "CL-004",
         name: "David Brown",
-        company: "DataFlow",
-        email: "david@dataflow.com",
-        projects: 0,
-        revenue: 0,
-        status: "inactive",
-        createdAt: new Date("2024-12-10"),
+        company: "BuildIt",
+        email: "david@buildit.com",
+        projects: 3,
+        revenue: 75000,
+        status: "active",
+        createdAt: new Date("2025-03-15"),
     },
     {
         id: "CL-005",
         name: "Eva Green",
-        company: "EcoSolutions",
-        email: "eva@ecosolutions.com",
-        projects: 3,
-        revenue: 89000,
-        status: "active",
-        createdAt: new Date("2025-04-05"),
-    },
-    {
-        id: "CL-006",
-        name: "Frank Miller",
-        company: "NextGen AI",
-        email: "frank@nextgen.ai",
-        projects: 5,
-        revenue: 210000,
-        status: "active",
-        createdAt: new Date("2025-04-12"),
-    },
+        company: "GreenTech",
+        email: "eva@greentech.com",
+        projects: 1,
+        revenue: 20000,
+        status: "pending",
+        createdAt: new Date("2025-03-20"),
+    }
 ];
 
 // ---------- Status Badge ----------
@@ -180,6 +175,18 @@ export default function ClientsPage() {
     // Show details
     const [showDialogOpen, setShowDialogOpen] = useState(false);
     const [clientToShow, setClientToShow] = useState<Client | null>(null);
+
+    // Create modal state
+    const [createDialogOpen, setCreateDialogOpen] = useState(false);
+    const [newClient, setNewClient] = useState({
+        fullName: "",
+        company: "",
+        email: "",
+        phone: "",
+        clientId: "",
+        status: "active" as ClientStatus,
+        address: "",
+    });
 
     // ---------- Computed summary ----------
     const totalClients = clients.length;
@@ -250,6 +257,7 @@ export default function ClientsPage() {
             setClients(clients.filter((c) => c.id !== clientToDelete.id));
             setDeleteDialogOpen(false);
             setClientToDelete(null);
+            toast.success("Client deleted successfully.");
         }
     };
 
@@ -261,6 +269,55 @@ export default function ClientsPage() {
     const handleShow = (client: Client) => {
         setClientToShow(client);
         setShowDialogOpen(true);
+    };
+
+    // ---------- Create Client ----------
+    const handleCreateClient = () => {
+        // Validate required fields
+        if (!newClient.fullName || !newClient.company || !newClient.email) {
+            toast.error("Please fill in all required fields.");
+            return;
+        }
+
+        // Generate client ID if not provided
+        let clientId = newClient.clientId.trim();
+        if (!clientId) {
+            const nextNumber = clients.length + 1;
+            clientId = `CL-${String(nextNumber).padStart(3, "0")}`;
+        } else {
+            // Check if ID already exists
+            if (clients.some((c) => c.id === clientId)) {
+                toast.error("Client ID already exists. Please use a unique ID.");
+                return;
+            }
+        }
+
+        const newClientObj: Client = {
+            id: clientId,
+            name: newClient.fullName,
+            company: newClient.company,
+            email: newClient.email,
+            phone: newClient.phone || undefined,
+            address: newClient.address || undefined,
+            projects: 0,
+            revenue: 0,
+            status: newClient.status,
+            createdAt: new Date(),
+        };
+
+        setClients([newClientObj, ...clients]);
+        setCreateDialogOpen(false);
+        // Reset form
+        setNewClient({
+            fullName: "",
+            company: "",
+            email: "",
+            phone: "",
+            clientId: "",
+            status: "active",
+            address: "",
+        });
+        toast.success("Client created successfully!");
     };
 
     return (
@@ -353,24 +410,24 @@ export default function ClientsPage() {
                     </Select>
                 </div>
 
-                <Button className="ml-auto">
+                <Button className="ml-auto" onClick={() => setCreateDialogOpen(true)}>
                     <Plus className="mr-2 h-4 w-4" /> Add Client
                 </Button>
             </div>
 
             {/* Table */}
             <div className="border rounded-md">
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead>Client ID</TableHead>
+                <Table className="bg-white rounded-md">
+                    <TableHeader className="bg-gray-50">
+                        <TableRow className="h-12">
+                            <TableHead className="pl-4">Client ID</TableHead>
                             <TableHead>Name</TableHead>
                             <TableHead>Company</TableHead>
                             <TableHead>Email</TableHead>
                             <TableHead className="text-center">Projects</TableHead>
                             <TableHead className="text-right">Revenue</TableHead>
                             <TableHead>Status</TableHead>
-                            <TableHead className="text-right">Actions</TableHead>
+                            <TableHead className="text-right pr-4">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -382,8 +439,8 @@ export default function ClientsPage() {
                             </TableRow>
                         ) : (
                             paginatedClients.map((client) => (
-                                <TableRow key={client.id}>
-                                    <TableCell className="font-mono text-xs">{client.id}</TableCell>
+                                <TableRow key={client.id} className="h-14">
+                                    <TableCell className="font-mono text-xs pl-4">{client.id}</TableCell>
                                     <TableCell className="font-medium">{client.name}</TableCell>
                                     <TableCell>{client.company}</TableCell>
                                     <TableCell>{client.email}</TableCell>
@@ -394,10 +451,10 @@ export default function ClientsPage() {
                                     <TableCell>
                                         <StatusBadge status={client.status} />
                                     </TableCell>
-                                    <TableCell className="text-right">
+                                    <TableCell className="text-right pr-4">
                                         <DropdownMenu>
-                                            <DropdownMenuTrigger asChild>
-                                                <span variant="ghost" className="h-8 w-8 p-0">
+                                            <DropdownMenuTrigger>
+                                                <span className="h-8 w-8 p-0">
                                                     <span className="sr-only">Open menu</span>
                                                     <MoreHorizontal className="h-4 w-4" />
                                                 </span>
@@ -405,9 +462,11 @@ export default function ClientsPage() {
                                             <DropdownMenuContent align="end">
                                                 <DropdownMenuGroup>
                                                     <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                                    <DropdownMenuItem onClick={() => handleShow(client)}>
-                                                        <Eye className="mr-2 h-4 w-4" />
-                                                        Show
+                                                    <DropdownMenuItem>
+                                                        <Link href={`/clients/${client.id}`} className="flex items-center gap-2">
+                                                            <Eye className="mr-2 h-4 w-4" />
+                                                            Show
+                                                        </Link>
                                                     </DropdownMenuItem>
                                                     <DropdownMenuItem onClick={() => handleEdit(client)}>
                                                         <Edit className="mr-2 h-4 w-4" />
@@ -556,10 +615,105 @@ export default function ClientsPage() {
                             <p><strong>Revenue:</strong> ${clientToShow.revenue.toLocaleString()}</p>
                             <p><strong>Status:</strong> <StatusBadge status={clientToShow.status} /></p>
                             <p><strong>Created At:</strong> {clientToShow.createdAt.toLocaleDateString()}</p>
+                            {clientToShow.phone && <p><strong>Phone:</strong> {clientToShow.phone}</p>}
+                            {clientToShow.address && <p><strong>Address:</strong> {clientToShow.address}</p>}
                         </div>
                     )}
                     <DialogFooter>
                         <Button onClick={() => setShowDialogOpen(false)}>Close</Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+
+            {/* Create Client Dialog */}
+            <Dialog open={createDialogOpen} onOpenChange={setCreateDialogOpen}>
+                <DialogContent className="max-w-md px-4 pt-6">
+                    <DialogHeader className="mb-4">
+                        <DialogTitle>Create New Client</DialogTitle>
+                        <DialogDescription>
+                            Fill in the client details below.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <div className="grid grid-cols-1 gap-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="fullName">Full Name <span className="text-destructive">*</span></Label>
+                                <Input
+                                    id="fullName"
+                                    value={newClient.fullName}
+                                    onChange={(e) => setNewClient({ ...newClient, fullName: e.target.value })}
+                                    placeholder="John Doe"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="company">Company <span className="text-destructive">*</span></Label>
+                                <Input
+                                    id="company"
+                                    value={newClient.company}
+                                    onChange={(e) => setNewClient({ ...newClient, company: e.target.value })}
+                                    placeholder="TechCorp"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="email">Email <span className="text-destructive">*</span></Label>
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    value={newClient.email}
+                                    onChange={(e) => setNewClient({ ...newClient, email: e.target.value })}
+                                    placeholder="client@example.com"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="phone">Phone Number</Label>
+                                <Input
+                                    id="phone"
+                                    value={newClient.phone}
+                                    onChange={(e) => setNewClient({ ...newClient, phone: e.target.value })}
+                                    placeholder="+1 (555) 000-0000"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="clientId">Client ID (optional)</Label>
+                                <Input
+                                    id="clientId"
+                                    value={newClient.clientId}
+                                    onChange={(e) => setNewClient({ ...newClient, clientId: e.target.value })}
+                                    placeholder="CL-004 (auto-generated if empty)"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="status">Status <span className="text-destructive">*</span></Label>
+                                <Select
+                                    value={newClient.status}
+                                    onValueChange={(val) => setNewClient({ ...newClient, status: val as ClientStatus })}
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select status" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="active">Active</SelectItem>
+                                        <SelectItem value="inactive">Inactive</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="address">Address</Label>
+                                <Textarea
+                                    id="address"
+                                    value={newClient.address}
+                                    onChange={(e) => setNewClient({ ...newClient, address: e.target.value })}
+                                    placeholder="123 Main St, City, Country"
+                                    rows={2}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <DialogFooter className="mt-4 pb-9">
+                        <Button variant="outline" onClick={() => setCreateDialogOpen(false)}>
+                            Cancel
+                        </Button>
+                        <Button onClick={handleCreateClient}>Create Client</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

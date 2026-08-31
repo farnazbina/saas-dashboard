@@ -106,6 +106,18 @@ const mockClients: Record<string, Client> = {
         status: "active",
         avatar: "https://ui-avatars.com/api/?name=Bob+Smith&background=22c55e&color=fff",
     },
+    "CL-003": {
+        id: "CL-003",
+        name: "Carol White",
+        company: "Design Studio",
+        email: "carol@design.studio",
+        phone: "+1 234 567 8903",
+        location: "New York, NY",
+        referredBy: "Sarah Lee",
+        joinedDate: new Date("2025-02-20"),
+        status: "active",
+        avatar: "https://ui-avatars.com/api/?name=Carol+White&background=3b82f6&color=fff",
+    },
 };
 
 const mockProjects: Record<string, Project[]> = {
@@ -128,6 +140,15 @@ const mockProjects: Record<string, Project[]> = {
             dueDate: "2025-07-15",
             priority: "medium",
         },
+        {
+            id: "p5",
+            name: "User Authentication System",
+            description: "Implement user login and registration",
+            status: "To Do",
+            progress: 10,
+            dueDate: "2025-07-15",
+            priority: "medium",
+        },
     ],
     "CL-002": [
         {
@@ -139,7 +160,27 @@ const mockProjects: Record<string, Project[]> = {
             dueDate: "2025-04-01",
             priority: "low",
         },
+        {
+            id: "p4",
+            name: "API Integration",
+            description: "Integrate third-party APIs",
+            status: "In Review",
+            progress: 90,
+            dueDate: "2025-05-20",
+            priority: "low",
+        },
     ],
+    "CL-003": [
+        {
+            id: "p6",
+            name: "API Integration",
+            description: "Integrate third-party APIs",
+            status: "In Review",
+            progress: 90,
+            dueDate: "2025-05-20",
+            priority: "high",
+        },
+    ]
 };
 
 const mockTasks: Record<string, Task[]> = {
@@ -180,6 +221,19 @@ const mockTasks: Record<string, Task[]> = {
             assignee: "Carol White",
         },
     ],
+    "CL-003": [
+        {
+            id: "t4",
+            title: "Implement authentication",
+            description: "Set up OAuth2 and JWT",
+            status: "in-review",
+            priority: "high",
+            progress: 90,
+            commentsCount: 5,
+            dueDate: "2025-05-15",
+            assignee: "Alice Johnson",
+        },
+    ],
 };
 
 const mockInvoices: Record<string, Invoice[]> = {
@@ -209,6 +263,16 @@ const mockInvoices: Record<string, Invoice[]> = {
             status: "overdue",
             issueDate: "2025-02-01",
             dueDate: "2025-03-01",
+        },
+    ],
+    "CL-003": [
+        {
+            id: "inv4",
+            invoiceNumber: "INV-2025-004",
+            amount: 56000,
+            status: "paid",
+            issueDate: "2025-01-15",
+            dueDate: "2025-02-15",
         },
     ],
 };
@@ -446,9 +510,9 @@ export default function ClientDetailPage() {
                     <p className="text-muted-foreground">No invoices for this client.</p>
                 ) : (
                     <div className="border rounded-md">
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
+                        <Table className="bg-white rounded-md">
+                            <TableHeader className="bg-gray-50">
+                                <TableRow className="h-12">
                                     <TableHead>Invoice #</TableHead>
                                     <TableHead className="text-right">Amount</TableHead>
                                     <TableHead>Issue Date</TableHead>
@@ -458,7 +522,7 @@ export default function ClientDetailPage() {
                             </TableHeader>
                             <TableBody>
                                 {invoices.map((invoice) => (
-                                    <TableRow key={invoice.id}>
+                                    <TableRow key={invoice.id} className="h-14">
                                         <TableCell className="font-medium">{invoice.invoiceNumber}</TableCell>
                                         <TableCell className="text-right">${invoice.amount.toLocaleString()}</TableCell>
                                         <TableCell>{new Date(invoice.issueDate).toLocaleDateString()}</TableCell>

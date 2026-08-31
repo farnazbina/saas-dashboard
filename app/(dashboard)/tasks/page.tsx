@@ -253,7 +253,7 @@ export default function KanbanPage() {
         <DndProvider backend={HTML5Backend}>
             <div className="py-6">
                 <h1 className="text-2xl font-bold mb-6">Kanban Board</h1>
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-6">
                     {STATUSES.map((status) => (
                         <Card key={status} className="overflow-hidden">
                             <CardContent className="px-2 pb-2">

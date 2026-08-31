@@ -1,5 +1,6 @@
 import OverviewSection from "@/components/dashboard/OverviewSection";
 import { ProjectProgressSection } from "@/components/dashboard/ProjectProgressSection";
+import { RecentClientsTable } from "@/components/dashboard/RecentClientsTable";
 import { TaskDistributionSection } from "@/components/dashboard/TaskDistributionSection";
 
 export default function DashboardPage() {
@@ -14,6 +15,7 @@ export default function DashboardPage() {
                     <TaskDistributionSection />
                 </div>
             </div>
+            <RecentClientsTable />
         </div>
     )
 }

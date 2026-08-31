@@ -138,19 +138,18 @@ function NotificationsDropdown() {
 
     return (
         <DropdownMenu open={open} onOpenChange={setOpen}>
-            <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="relative">
-                    <Bell className="h-5 w-5" />
+            <DropdownMenuTrigger>
+                <div className="relative mr-4 bg-white border border-muted rounded-full h-10 w-10 flex items-center justify-center" >
+
+                    <Bell size={16} />
                     {unreadCount > 0 && (
                         <Badge
                             variant="destructive"
-                            className="absolute -top-0.5 -right-0.5 h-5 w-5 rounded-full p-0 flex items-center justify-center text-[10px]"
-                        >
-                            {unreadCount}
-                        </Badge>
+                            className="absolute top-2 right-2.5 h-2 w-2 rounded-full bg-primary p-0 flex items-center justify-center text-[10px]"
+                        />
                     )}
                     <span className="sr-only">Notifications</span>
-                </Button>
+                </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-80 p-0" sideOffset={8}>
                 <div className="flex items-center justify-between p-4 border-b">
@@ -203,14 +202,18 @@ function NotificationsDropdown() {
 // ---------- Main Header ----------
 export default function Header() {
     return (
-        <header className="sticky top-0 z-10 flex justify-between items-center bg-background-layout border-b border-solid border-border py-5 px-4 md:px-6">
+        <header className="sticky top-0 z-10 flex justify-between items-center bg-background-layout border-b border-solid border-border py-5 ">
             <div className="flex items-center gap-2">
-                <SidebarTrigger />
+                <div className="relative mr-4 bg-white border border-muted rounded-full h-10 w-10 flex items-center justify-center" >
+                    <SidebarTrigger className='bg-transparent border-none hover:bg-transparent' />
+                </div>
                 <h1 className="text-xl font-medium hidden sm:block">Hello Farnaz</h1>
             </div>
 
             <div className="flex items-center gap-2">
-                <ThemeToggle />
+                <div className="relative bg-white border border-muted rounded-full h-10 w-10 flex items-center justify-center" >
+                    <ThemeToggle />
+                </div>
                 <NotificationsDropdown />
                 <UserAvatar user={user} />
             </div>

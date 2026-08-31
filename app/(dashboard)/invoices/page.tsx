@@ -144,9 +144,9 @@ export default function InvoicesPage() {
 
             {/* Table */}
             <div className="border rounded-md">
-                <Table>
-                    <TableHeader>
-                        <TableRow>
+                <Table className="bg-white rounded-md">
+                    <TableHeader className="bg-gray-50">
+                        <TableRow className="h-12">
                             <TableHead>Invoice ID</TableHead>
                             <TableHead>Client Name</TableHead>
                             <TableHead className="text-right">Amount</TableHead>
@@ -165,7 +165,7 @@ export default function InvoicesPage() {
                             </TableRow>
                         ) : (
                             paginatedInvoices.map((invoice) => (
-                                <TableRow key={invoice.id}>
+                                <TableRow key={invoice.id} className="h-14">
                                     <TableCell className="font-mono text-xs">{invoice.id}</TableCell>
                                     <TableCell className="font-medium">{invoice.name}</TableCell>
                                     <TableCell className="text-right">{formatCurrency(invoice.amount)}</TableCell>

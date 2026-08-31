@@ -19,7 +19,7 @@ const OverviewCard = ({ title, icon, value, progress, label, color }: Props) => 
             <div className="heading rounded-xl flex flex-col px-5 pb-5 pt-4 gap-y-3">
                 <span className="text-lg font-semibold">{value}</span>
                 <div className="flex items-center gap-3">
-                    <span className="block border border-solid border-success bg-success/10 text-sm text-success rounded-sm px-4 py-1">%{progress}</span>
+                    <span className="block border border-solid border-success bg-success/10 text-sm text-success rounded-sm px-3">%{progress}</span>
                     <span>{label}</span>
                 </div>
             </div>

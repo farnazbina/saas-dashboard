@@ -10,6 +10,7 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { LayoutDashboard, SquareKanban, FolderKanban, Users, Settings, Wallet } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -55,7 +56,8 @@ export default function AppSidebar() {
     ]
     return (
         <Sidebar className="py-6 px-4 bg-background hidden lg:flex">
-            <SidebarHeader className="bg-background">
+            <SidebarHeader className="flex items-center gap-2 bg-background">
+                <Image src="/images/Logo.png" alt="Logo" width={40} height={40} />
                 <Link href='/dashboard/overview' className="text-lg font-semibold">Dreams <span className="text-primary">Dashboard</span></Link>
             </SidebarHeader>
             <SidebarContent className="bg-background pt-4">

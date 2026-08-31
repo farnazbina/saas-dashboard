@@ -63,14 +63,14 @@ export function TaskDistributionSection() {
     }, [])
 
     return (
-        <Card className="flex flex-col h-90 rounded-lg">
-            <CardHeader className="items-center pb-0">
+        <Card className="flex flex-col h-100 rounded-lg pr-4 items-center">
+            <CardHeader className="w-full items-center pb-0">
                 <CardTitle>Task Distribution</CardTitle>
             </CardHeader>
-            <CardContent className="flex-1 pb-0">
+            <CardContent className="flex-1 pb-0 justify-center">
                 <ChartContainer
                     config={chartConfig}
-                    className="mx-auto aspect-square h-85 -mt-8"
+                    className=" aspect-square h-85 -mt-1"
                 >
                     <PieChart>
                         <ChartTooltip
@@ -82,7 +82,7 @@ export function TaskDistributionSection() {
                             dataKey="visitors"
                             nameKey="browser"
                             innerRadius={90}
-                            strokeWidth={4}
+                            strokeWidth={9}
                             label={({ payload, ...props }) => {
                                 return (
                                     <text
@@ -102,7 +102,7 @@ export function TaskDistributionSection() {
 
                         >
                             <Label
-                                
+                                className="absolute text-center top-15 pb-7"
                                 content={({ viewBox }) => {
                                     if (viewBox && "cx" in viewBox && "cy" in viewBox) {
                                         return (
@@ -114,14 +114,14 @@ export function TaskDistributionSection() {
                                             >
                                                 <tspan
                                                     x={viewBox.cx}
-                                                    y={viewBox.cy}
+                                                    y={160}
                                                     className="fill-foreground text-3xl font-bold"
                                                 >
                                                     {totalVisitors.toLocaleString()}
                                                 </tspan>
                                                 <tspan
                                                     x={viewBox.cx}
-                                                    y={(viewBox.cy || 0) + 24}
+                                                    y={130}
                                                     className="fill-muted-foreground"
                                                 >
                                                     Total Tasks

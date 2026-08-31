@@ -38,7 +38,7 @@ const chartConfig = {
 
 export function ProjectProgressSection() {
     return (
-        <Card className="rounded-lg h-90">
+        <Card className="rounded-lg h-100">
             <CardHeader>
                 <CardTitle>Project Progress</CardTitle>
                 <CardDescription>January - June 2024</CardDescription>
