@@ -12,21 +12,21 @@ interface Props {
 
 const statusStyles: Record<ProjectStatus, { bg: string; text: string }> = {
     "TODO": {
-        bg: "bg-[var(--task-todo)]/10 border-[var(--task-todo)]",
-        text: "text-[var(--task-todo)]",
+        bg: "bg-task-todo-muted border-task-todo/30",
+        text: "text-task-todo",
     },
     "IN_PROGRESS": {
-        bg: "bg-[var(--task-progress)]/10 border-[var(--task-progress)]",
-        text: "text-[var(--task-progress)]",
+        bg: "bg-task-progress-muted border-task-progress/30",
+        text: "text-task-progress",
     },
     "Done": {
-        bg: "bg-[var(--task-done)]/10 border-[var(--task-done)]",
-        text: "text-[var(--task-done)]",
+        bg: "bg-task-done-muted border-task-done/30",
+        text: "text-task-done",
     },
 };
 
 const ProjectCard = ({ title, category, status, deadline, assignee }: Props) => {
-    const defaultStyle = { bg: "bg-gray-500", text: "text-white" };
+    const defaultStyle = { bg: "bg-muted0", text: "text-secondary-foreground" };
     const { bg, text } = statusStyles[status] || defaultStyle;
 
     return (
@@ -58,7 +58,7 @@ const ProjectCard = ({ title, category, status, deadline, assignee }: Props) => 
             </div>
             <div className="flex items-center justify-between border-t border-solid border-muted pt-4">
                 60 03
-                <Button variant='secondary' className="hover:bg-primary hover:text-white" >mark as complete</Button>
+                <Button variant='secondary' className="hover:bg-primary hover:text-primary-foreground" >mark as complete</Button>
             </div>
         </div>
     )

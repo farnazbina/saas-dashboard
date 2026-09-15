@@ -6,38 +6,38 @@ const OverviewSection = () => {
         {
             id: 1,
             title: 'Active Projects',
-            icon: <FolderClosed className="text-white" />,
+            icon: <FolderClosed  />,
             value: 12,
             progress: 12,
             label: 'In Progress',
-            color: 'bg-primary'
+            color: 'bg-primary text-primary-foreground'
         },
         {
             id: 2,
             title: 'Tasks Completed',
-            icon: <CircleCheckBig className="text-white" />,
+            icon: <CircleCheckBig  />,
             value: 1248,
             progress: 12,
             label: 'This Sprint',
-            color: 'bg-success'
+            color: 'bg-success text-success-foreground'
         },
         {
             id: 3,
             title: 'Team Members',
-            icon: <UsersRound className="text-white" />,
+            icon: <UsersRound  />,
             value: 12,
             progress: 12,
             label: 'Active',
-            color: 'bg-info'
+            color: 'bg-info text-info-foreground'
         },
         {
             id: 4,
             title: 'On-Time Delivery',
-            icon: <ClockCheck className="text-white" />,
+            icon: <ClockCheck  />,
             value: 12,
             progress: 12,
             label: 'Delivery Rate',
-            color: 'bg-task-inreview'
+            color: 'bg-task-inreview text-task-inreview-foreground'
         },
     ]
     return (

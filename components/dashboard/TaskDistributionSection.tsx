@@ -134,7 +134,7 @@ export function TaskDistributionSection() {
                         </Pie>
                         <ChartLegend
                             content={<ChartLegendContent nameKey="browser" />}
-                            className="text-black -translate-y-2 flex-wrap gap-2 *:basis-1/4 *:justify-center"
+                            className="text-foreground -translate-y-2 flex-wrap gap-2 *:basis-1/4 *:justify-center"
                         />
                     </PieChart>
                 </ChartContainer>

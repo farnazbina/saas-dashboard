@@ -12,7 +12,7 @@ interface UserAvatarProps {
 
 export function UserAvatar({ className, showInfo = false, user }: UserAvatarProps) {
   return (
-    <div className='flex items-center gap-2 ml-3 relative before:absolute before:-left-5 before:top-2 before:h-6 before:w-px before:bg-gray-300'>
+    <div className='flex items-center gap-2 ml-3 relative before:absolute before:-left-5 before:top-2 before:h-6 before:w-px before:bg-border'>
       <Avatar className={className} size='lg'>
         <AvatarImage src='/images/Logo.png' className='object-cover' alt={user?.fullName || ''} />
         <AvatarFallback className='rounded-lg'>

@@ -10,6 +10,7 @@ const googleSans = Google_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
   variable: '--font-google-sans',
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {

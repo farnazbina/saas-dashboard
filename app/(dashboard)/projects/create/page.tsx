@@ -137,7 +137,7 @@ export default function CreateProjectPage() {
                                 placeholder="e.g. E-commerce Platform"
                                 aria-invalid={fieldState.invalid}
                                 disabled={isPending}
-                                className="bg-white"
+                                className="bg-card"
                             />
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
@@ -280,7 +280,7 @@ export default function CreateProjectPage() {
                             <FieldLabel htmlFor="project-description">
                                 Description <span className="text-destructive">*</span>
                             </FieldLabel>
-                            <InputGroup className="bg-white">
+                            <InputGroup className="bg-card">
                                 <InputGroupTextarea
                                     {...field}
                                     id="project-description"

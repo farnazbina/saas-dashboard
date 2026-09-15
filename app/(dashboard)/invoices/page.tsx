@@ -144,8 +144,8 @@ export default function InvoicesPage() {
 
             {/* Table */}
             <div className="border rounded-md">
-                <Table className="bg-white rounded-md">
-                    <TableHeader className="bg-gray-50">
+                <Table className="bg-card rounded-md">
+                    <TableHeader className="bg-muted">
                         <TableRow className="h-12">
                             <TableHead>Invoice ID</TableHead>
                             <TableHead>Client Name</TableHead>
@@ -175,8 +175,8 @@ export default function InvoicesPage() {
                                             variant="outline"
                                             className={cn(
                                                 invoice.isPaid
-                                                    ? "bg-green-100 text-green-800 border-green-300"
-                                                    : "bg-yellow-100 text-yellow-800 border-yellow-300"
+                                                    ? "bg-success-muted text-success border-success/30"
+                                                    : "bg-warning-muted text-warning border-warning/30"
                                             )}
                                         >
                                             {invoice.isPaid ? "Paid" : "Unpaid"}

@@ -33,17 +33,17 @@ const STATUS_LABELS: Record<TaskStatus, string> = {
 };
 
 const STATUS_COLORS: Record<TaskStatus, string> = {
-    todo: "bg-blue-100 border-blue-300",
-    "in-progress": "bg-yellow-100 border-yellow-300",
-    done: "bg-green-100 border-green-300",
-    blocked: "bg-red-100 border-red-300",
-    "in-review": "bg-purple-100 border-purple-300",
+    todo: "bg-task-todo-muted border-task-todo/30",
+    "in-progress": "bg-task-progress-muted border-task-progress/30",
+    done: "bg-task-done-muted border-task-done/30",
+    blocked: "bg-task-blocked-muted border-task-blocked/30",
+    "in-review": "bg-task-inreview-muted border-task-inreview/30",
 };
 
 const PRIORITY_COLORS: Record<Priority, string> = {
-    low: "bg-green-100 text-green-800 border-green-300",
-    medium: "bg-yellow-100 text-yellow-800 border-yellow-300",
-    high: "bg-red-100 text-red-800 border-red-300",
+    low: "bg-success-muted text-success border-success/30",
+    medium: "bg-warning-muted text-warning border-warning/30",
+    high: "bg-error-muted text-error border-error/30",
 };
 
 const PRIORITY_LABELS: Record<Priority, string> = {

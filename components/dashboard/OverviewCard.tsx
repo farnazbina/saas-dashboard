@@ -14,7 +14,7 @@ const OverviewCard = ({ title, icon, value, progress, label, color }: Props) => 
         <div className="rounded-lg flex flex-col bg-card border border-solid border-muted">
             <div className={`heading rounded-lg flex items-center px-5 py-7 gap-3 ${color}`}>
                 {icon}
-                <span className="text-white text-md font-medium">{title}</span>
+                <span className="text-md font-medium">{title}</span>
             </div>
             <div className="heading rounded-xl flex flex-col px-5 pb-5 pt-4 gap-y-3">
                 <span className="text-lg font-semibold">{value}</span>

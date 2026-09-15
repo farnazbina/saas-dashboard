@@ -27,7 +27,7 @@ const AddNewProject = () => {
     return (
         <Link
             href='/projects/create'
-            className="flex items-center gap-x-1 bg-primary rounded-sm px-4 py-2 text-white text-sm"
+            className="flex items-center gap-x-1 bg-primary rounded-sm px-4 py-2 text-primary-foreground text-sm"
             onMouseEnter={prefetchModalData}
         >
             <Plus size={14} /> New Project

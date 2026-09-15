@@ -96,7 +96,7 @@ export default function SignupPage() {
 
     // ---------- Password strength indicator ----------
     const getPasswordStrength = (password: string) => {
-        if (!password) return { score: 0, label: "Weak", color: "bg-gray-200" };
+        if (!password) return { score: 0, label: "Weak", color: "bg-muted" };
         let score = 0;
         if (password.length >= 8) score++;
         if (/[A-Z]/.test(password)) score++;
@@ -104,12 +104,12 @@ export default function SignupPage() {
         if (/[0-9]/.test(password)) score++;
         if (/[^A-Za-z0-9]/.test(password)) score++;
         const map: Record<number, { label: string; color: string }> = {
-            0: { label: "Weak", color: "bg-red-500" },
-            1: { label: "Weak", color: "bg-red-500" },
-            2: { label: "Fair", color: "bg-yellow-500" },
-            3: { label: "Good", color: "bg-blue-500" },
-            4: { label: "Strong", color: "bg-green-500" },
-            5: { label: "Very Strong", color: "bg-emerald-500" },
+            0: { label: "Weak", color: "bg-error" },
+            1: { label: "Weak", color: "bg-error" },
+            2: { label: "Fair", color: "bg-warning" },
+            3: { label: "Good", color: "bg-info" },
+            4: { label: "Strong", color: "bg-success" },
+            5: { label: "Very Strong", color: "bg-success" },
         };
         return map[score] || map[0];
     };
@@ -288,18 +288,18 @@ export default function SignupPage() {
                                                     <span
                                                         className={cn(
                                                             "font-medium",
-                                                            strength.label === "Weak" && "text-red-500",
-                                                            strength.label === "Fair" && "text-yellow-500",
-                                                            strength.label === "Good" && "text-blue-500",
-                                                            strength.label === "Strong" && "text-green-500",
+                                                            strength.label === "Weak" && "text-error",
+                                                            strength.label === "Fair" && "text-warning",
+                                                            strength.label === "Good" && "text-info",
+                                                            strength.label === "Strong" && "text-success",
                                                             strength.label === "Very Strong" &&
-                                                            "text-emerald-500"
+                                                            "text-success"
                                                         )}
                                                     >
                                                         {strength.label}
                                                     </span>
                                                 </div>
-                                                <div className="h-1.5 w-full rounded-full bg-gray-200">
+                                                <div className="h-1.5 w-full rounded-full bg-muted">
                                                     <div
                                                         className={cn(
                                                             "h-1.5 rounded-full transition-all",

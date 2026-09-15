@@ -136,9 +136,9 @@ const mockClients: Client[] = [
 
 // ---------- Status Badge ----------
 const statusColors: Record<ClientStatus, string> = {
-    active: "bg-green-100 text-green-800 border-green-300",
-    inactive: "bg-gray-100 text-gray-800 border-gray-300",
-    pending: "bg-yellow-100 text-yellow-800 border-yellow-300",
+    active: "bg-success-muted text-success border-success/30",
+    inactive: "bg-muted text-muted-foreground border-border",
+    pending: "bg-warning-muted text-warning border-warning/30",
 };
 
 const statusLabels: Record<ClientStatus, string> = {
@@ -417,8 +417,8 @@ export default function ClientsPage() {
 
             {/* Table */}
             <div className="border rounded-md">
-                <Table className="bg-white rounded-md">
-                    <TableHeader className="bg-gray-50">
+                <Table className="bg-card rounded-md">
+                    <TableHeader className="bg-muted">
                         <TableRow className="h-12">
                             <TableHead className="pl-4">Client ID</TableHead>
                             <TableHead>Name</TableHead>

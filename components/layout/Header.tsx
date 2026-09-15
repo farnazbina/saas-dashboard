@@ -139,7 +139,7 @@ function NotificationsDropdown() {
     return (
         <DropdownMenu open={open} onOpenChange={setOpen}>
             <DropdownMenuTrigger>
-                <div className="relative mr-4 bg-white border border-muted rounded-full h-10 w-10 flex items-center justify-center" >
+                <div className="relative mr-4 bg-card border border-muted rounded-full h-10 w-10 flex items-center justify-center" >
 
                     <Bell size={16} />
                     {unreadCount > 0 && (
@@ -204,14 +204,14 @@ export default function Header() {
     return (
         <header className="sticky top-0 z-10 flex justify-between items-center bg-background-layout border-b border-solid border-border py-5 ">
             <div className="flex items-center gap-2">
-                <div className="relative mr-4 bg-white border border-muted rounded-full h-10 w-10 flex items-center justify-center" >
+                <div className="relative mr-4 bg-card border border-muted rounded-full h-10 w-10 flex items-center justify-center" >
                     <SidebarTrigger className='bg-transparent border-none hover:bg-transparent' />
                 </div>
                 <h1 className="text-xl font-medium hidden sm:block">Hello Farnaz</h1>
             </div>
 
             <div className="flex items-center gap-2">
-                <div className="relative bg-white border border-muted rounded-full h-10 w-10 flex items-center justify-center" >
+                <div className="relative bg-card border border-muted rounded-full h-10 w-10 flex items-center justify-center" >
                     <ThemeToggle />
                 </div>
                 <NotificationsDropdown />

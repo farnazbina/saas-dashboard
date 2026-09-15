@@ -5,15 +5,15 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* متغیرهای اصلی پروژه */
+  /* Semantic utilities automatically follow the active theme. */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-google-sans);
   --font-mono: var(--font-google-sans);
   --font-heading: var(--font-sans);
   --color-text: var(--text);
-  
-  /* متغیرهای shadcn/ui */
+
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -50,205 +50,274 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  --gradient-primary: var(--gradient-primary);
+
   --color-background-layout: var(--background-layout);
 
-  /* ========== رنگ‌های سفارشی وضعیت‌ها (Status) ========== */
+
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
   --color-success-muted: var(--success-muted);
-  
+
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
   --color-info-muted: var(--info-muted);
-  
+
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
   --color-warning-muted: var(--warning-muted);
-  
+
   --color-error: var(--error);
   --color-error-foreground: var(--error-foreground);
   --color-error-muted: var(--error-muted);
 
-  /* ========== رنگ‌های سفارشی ۵ نوع تسک (Task Types) ========== */
+
+  /* Task types: text/icon and subtle background pairs. */
+  --color-task-feature: var(--task-feature);
+  --color-task-feature-muted: var(--task-feature-muted);
+  --color-task-bug: var(--task-bug);
+  --color-task-bug-muted: var(--task-bug-muted);
+  --color-task-improvement: var(--task-improvement);
+  --color-task-improvement-muted: var(--task-improvement-muted);
+  --color-task-design: var(--task-design);
+  --color-task-design-muted: var(--task-design-muted);
+  --color-task-documentation: var(--task-documentation);
+  --color-task-documentation-muted: var(--task-documentation-muted);
+  --color-task-research: var(--task-research);
+  --color-task-research-muted: var(--task-research-muted);
+  --color-task-marketing: var(--task-marketing);
+  --color-task-marketing-muted: var(--task-marketing-muted);
+  --color-task-chore: var(--task-chore);
+  --color-task-chore-muted: var(--task-chore-muted);
+  --color-task-urgent: var(--task-urgent);
+  --color-task-urgent-muted: var(--task-urgent-muted);
+  --color-task-blocker: var(--task-blocker);
+  --color-task-blocker-muted: var(--task-blocker-muted);
+
   --color-task-progress: var(--task-progress);
   --color-task-progress-foreground: var(--task-progress-foreground);
   --color-task-progress-muted: var(--task-progress-muted);
-  
+
   --color-task-blocked: var(--task-blocked);
   --color-task-blocked-foreground: var(--task-blocked-foreground);
   --color-task-blocked-muted: var(--task-blocked-muted);
-  
+
   --color-task-todo: var(--task-todo);
   --color-task-todo-foreground: var(--task-todo-foreground);
   --color-task-todo-muted: var(--task-todo-muted);
-  
+
   --color-task-inreview: var(--task-inreview);
   --color-task-inreview-foreground: var(--task-inreview-foreground);
   --color-task-inreview-muted: var(--task-inreview-muted);
-  
+
   --color-task-done: var(--task-done);
   --color-task-done-foreground: var(--task-done-foreground);
   --color-task-done-muted: var(--task-done-muted);
+  --color-primary-default: var(--primary-default);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-pressed: var(--primary-pressed);
+  --color-primary-subtle-bg: var(--primary-subtle-bg);
+  --color-secondary-default: var(--secondary-default);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-subtle-bg: var(--secondary-subtle-bg);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-overlay: var(--overlay);
 }
 
-/* ============================================ */
-/* 1. حالت لایت (پیش‌فرض)                      */
-/* ============================================ */
+@utility bg-gradient-primary {
+  background-image: var(--gradient-primary);
+}
+
+/* Semantic palette. See docs/style-guide.md for usage. */
 :root {
-  /* متغیرهای اصلی shadcn/ui (بدون تغییر) */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --text: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #7a13f0;
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: #e5e7eb;
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  /* Exact task-type palette from the style guide. */
+  --task-feature: #1F9D74;
+  --task-feature-muted: #E6F7F0;
+  --task-bug: #C1462E;
+  --task-bug-muted: #FBEAE6;
+  --task-improvement: #B8791E;
+  --task-improvement-muted: #FBF0DD;
+  --task-design: #8A4F9E;
+  --task-design-muted: #F3E9F7;
+  --task-documentation: #43628C;
+  --task-documentation-muted: #E8EEF6;
+  --task-research: #1A7F86;
+  --task-research-muted: #E3F4F4;
+  --task-marketing: #A84A63;
+  --task-marketing-muted: #F7E7EC;
+  --task-chore: #7D6A4C;
+  --task-chore-muted: #F0EBE1;
+  --task-urgent: #8E2A3C;
+  --task-urgent-muted: #F5E4E7;
+  --task-blocker: var(--task-urgent);
+  --task-blocker-muted: var(--task-urgent-muted);
+
+  color-scheme: light;
+  /* Brand palette shared by light and dark themes. */
+  --primary-default: #378ADD;
+  --primary-hover: #2B6CB8;
+  --primary-pressed: #1F4E8C;
+  --primary-subtle-bg: #EFF6FF;
+  --secondary-default: #7C5CFC;
+  --secondary-hover: #6B46E5;
+  --secondary-subtle-bg: #F5F3FF;
+  --background: #ffffff;
+  --foreground: #1e1b2e;
+  --card: #ffffff;
+  --popover: #ffffff;
+  --primary: var(--primary-default);
+  --primary-foreground: #ffffff;
+  --secondary: var(--secondary-default);
+  --secondary-foreground: #ffffff;
+  --muted: #f0edf5;
+  --muted-foreground: #655e73;
+  --accent: var(--primary-subtle-bg);
+  --accent-foreground: var(--primary-pressed);
+  --border: #ddd7e5;
+  --input: #8a8197;
+  --ring: var(--primary-default);
+  --background-layout: #f8f7fb;
+  --sidebar: #ffffff;
+  --gradient-end: var(--primary-hover);
+  --overlay: #000000;
+  --success: #15803d;
+  --success-foreground: #ffffff;
+  --success-muted: #dcfce7;
+  --info: #1d4ed8;
+  --info-foreground: #ffffff;
+  --info-muted: #dbeafe;
+  --warning: #92400e;
+  --warning-foreground: #ffffff;
+  --warning-muted: #fef3c7;
+  --error: #b91c1c;
+  --error-foreground: #ffffff;
+  --error-muted: #fee2e2;
+  --task-progress: var(--task-research);
+  --task-progress-foreground: #ffffff;
+  --task-progress-muted: var(--task-research-muted);
+  --task-blocked: var(--task-urgent);
+  --task-blocked-foreground: #ffffff;
+  --task-blocked-muted: var(--task-urgent-muted);
+  --task-todo: var(--task-documentation);
+  --task-todo-foreground: #ffffff;
+  --task-todo-muted: var(--task-documentation-muted);
+  --task-inreview: var(--task-improvement);
+  --task-inreview-foreground: #ffffff;
+  --task-inreview-muted: var(--task-improvement-muted);
+  --task-done: var(--task-feature);
+  --task-done-foreground: #ffffff;
+  --task-done-muted: var(--task-feature-muted);
+  --text: var(--foreground);
+  --card-foreground: var(--foreground);
+  --popover-foreground: var(--foreground);
+  --destructive: var(--error);
+  --destructive-foreground: var(--error-foreground);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+  --chart-1: var(--task-progress);
+  --chart-2: var(--task-todo);
+  --chart-3: var(--task-done);
+  --chart-4: var(--task-inreview);
+  --chart-5: var(--task-blocked);
+  --gradient-primary: linear-gradient(90deg, var(--primary), var(--gradient-end));
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --gradient-primary: linear-gradient(to right, var(--primary), color-mix(in oklch, var(--primary) 30%, transparent));
-  --background-layout: #f9fafb;
-
-  /* ========== وضعیت‌ها (Status) – لایت ========== */
-  --success: #22C55E;                 /* سبز اصلی */
-  --success-foreground: #FFFFFF;
-  --success-muted: #DCFCE7;           /* سبز بسیار روشن */
-
-  --info: #3B82F6;                    /* آبی اصلی */
-  --info-foreground: #FFFFFF;
-  --info-muted: #DBEAFE;              /* آبی بسیار روشن */
-
-  --warning: #EAB308;                 /* زرد اصلی */
-  --warning-foreground: #FFFFFF;
-  --warning-muted: #FEF08A;           /* زرد بسیار روشن */
-
-  --error: #EF4444;                   /* قرمز اصلی */
-  --error-foreground: #FFFFFF;
-  --error-muted: #FEE2E2;             /* قرمز بسیار روشن */
-
-  /* ========== ۵ نوع تسک (Task Types) – لایت ========== */
-  --task-progress: #8B5CF6;            /* بنفش */
-  --task-progress-foreground: #FFFFFF;
-  --task-progress-muted: #EDE9FE;      /* بنفش بسیار روشن */
-
-  --task-blocked: #F43F5E;                /* رز/قرمز-صورتی */
-  --task-blocked-foreground: #FFFFFF;
-  --task-blocked-muted: #FFE4E6;          /* رز بسیار روشن */
-
-  --task-todo: #06B6D4;             /* فیروزه‌ای */
-  --task-todo-foreground: #FFFFFF;
-  --task-todo-muted: #CFFAFE;       /* فیروزه‌ای بسیار روشن */
-
-  --task-inreview: #F59E0B;           /* کهربایی */
-  --task-inreview-foreground: #FFFFFF;
-  --task-inreview-muted: #FEF3C7;     /* کهربایی بسیار روشن */
-
-  --task-done: #10B981;            /* زمردی */
-  --task-done-foreground: #FFFFFF;
-  --task-done-muted: #D1FAE5;      /* زمردی بسیار روشن */
 }
 
-/* ============================================ */
-/* 2. حالت دارک (با کلاس dark روی <html>)     */
-/* ============================================ */
 .dark {
-  /* متغیرهای اصلی shadcn/ui (بدون تغییر) */
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --text: oklch(1 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: #7a13f0;
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-  --gradient-primary: linear-gradient(to right, var(--primary), color-mix(in oklch, var(--primary) 30%, transparent));
-  --background-layout: #111827;       /* پس‌زمینه تیره‌تر برای دارک */
+  /* Exact task-type palette from the style guide. */
+  --task-feature: #4ADE9A;
+  --task-feature-muted: #0F2A20;
+  --task-bug: #F0805F;
+  --task-bug-muted: #33170F;
+  --task-improvement: #E8B255;
+  --task-improvement-muted: #362609;
+  --task-design: #C98EDD;
+  --task-design-muted: #2E1A38;
+  --task-documentation: #8FADD6;
+  --task-documentation-muted: #16222F;
+  --task-research: #55C7CC;
+  --task-research-muted: #0C2A2C;
+  --task-marketing: #E28FA4;
+  --task-marketing-muted: #331620;
+  --task-chore: #C1AD87;
+  --task-chore-muted: #2A2418;
+  --task-urgent: #D6748A;
+  --task-urgent-muted: #2E1219;
+  --task-blocker: var(--task-urgent);
+  --task-blocker-muted: var(--task-urgent-muted);
 
-  /* ========== وضعیت‌ها (Status) – دارک (نسخه روشن‌تر) ========== */
-  --success: #4ADE80;                 /* سبز روشن‌تر برای خوانایی */
-  --success-foreground: #FFFFFF;
-  --success-muted: #166534;           /* پس‌زمینه تیره برای دارک */
-
-  --info: #60A5FA;                    /* آبی روشن‌تر */
-  --info-foreground: #FFFFFF;
-  --info-muted: #1E3A8A;              /* پس‌زمینه تیره */
-
-  --warning: #FBBF24;                 /* زرد روشن‌تر */
-  --warning-foreground: #000000;      /* متن تیره برای کنتراست */
-  --warning-muted: #78350F;           /* پس‌زمینه تیره */
-
-  --error: #F87171;                   /* قرمز روشن‌تر */
-  --error-foreground: #FFFFFF;
-  --error-muted: #7F1D1D;             /* پس‌زمینه تیره */
-
-  /* ========== ۵ نوع تسک (Task Types) – دارک ========== */
-  --task-progress: #A78BFA;            /* بنفش روشن‌تر */
-  --task-progress-foreground: #FFFFFF;
-  --task-progress-muted: #2E1065;      /* پس‌زمینه تیره */
-
-  --task-blocked: #FB7185;                /* رز روشن‌تر */
-  --task-blocked-foreground: #FFFFFF;
-  --task-blocked-muted: #4C0519;          /* پس‌زمینه تیره */
-
-  --task-todo: #22D3EE;             /* فیروزه‌ای روشن‌تر */
-  --task-todo-foreground: #FFFFFF;
-  --task-todo-muted: #0C4A6E;       /* پس‌زمینه تیره */
-
-  --task-inreview: #FBBF24;           /* کهربایی روشن‌تر (همان زرد) */
-  --task-inreview-foreground: #000000; /* متن تیره برای کنتراست */
-  --task-inreview-muted: #78350F;     /* پس‌زمینه تیره */
-
-  --task-done: #34D399;            /* زمردی روشن‌تر */
-  --task-done-foreground: #FFFFFF;
-  --task-done-muted: #064E3B;      /* پس‌زمینه تیره */
+  color-scheme: dark;
+  /* Dark surface equivalents; solid brand colors retain the supplied palette. */
+  --primary-subtle-bg: #142b43;
+  --secondary-subtle-bg: #282044;
+  --background: #15121c;
+  --foreground: #f5f2fa;
+  --card: #1e1928;
+  --popover: #251f31;
+  --primary: var(--primary-default);
+  --primary-foreground: #ffffff;
+  --secondary: var(--secondary-default);
+  --secondary-foreground: #ffffff;
+  --muted: #2c2538;
+  --muted-foreground: #b5abc4;
+  --accent: var(--primary-subtle-bg);
+  --accent-foreground: #93c5fd;
+  --border: #41364f;
+  --input: #7f708f;
+  --ring: var(--primary-default);
+  --background-layout: #100d16;
+  --sidebar: #1a1523;
+  --gradient-end: var(--primary-hover);
+  --overlay: #000000;
+  --success: #4ade80;
+  --success-foreground: #15121c;
+  --success-muted: #102e20;
+  --info: #93c5fd;
+  --info-foreground: #15121c;
+  --info-muted: #172b46;
+  --warning: #fbbf24;
+  --warning-foreground: #15121c;
+  --warning-muted: #36270f;
+  --error: #fca5a5;
+  --error-foreground: #15121c;
+  --error-muted: #3b1b23;
+  --task-progress: var(--task-research);
+  --task-progress-foreground: #15121c;
+  --task-progress-muted: var(--task-research-muted);
+  --task-blocked: var(--task-urgent);
+  --task-blocked-foreground: #15121c;
+  --task-blocked-muted: var(--task-urgent-muted);
+  --task-todo: var(--task-documentation);
+  --task-todo-foreground: #15121c;
+  --task-todo-muted: var(--task-documentation-muted);
+  --task-inreview: var(--task-improvement);
+  --task-inreview-foreground: #15121c;
+  --task-inreview-muted: var(--task-improvement-muted);
+  --task-done: var(--task-feature);
+  --task-done-foreground: #15121c;
+  --task-done-muted: var(--task-feature-muted);
+  --text: var(--foreground);
+  --card-foreground: var(--foreground);
+  --popover-foreground: var(--foreground);
+  --destructive: var(--error);
+  --destructive-foreground: var(--error-foreground);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+  --chart-1: var(--task-progress);
+  --chart-2: var(--task-todo);
+  --chart-3: var(--task-done);
+  --chart-4: var(--task-inreview);
+  --chart-5: var(--task-blocked);
+  --gradient-primary: linear-gradient(90deg, var(--primary), var(--gradient-end));
 }
 
 @layer base {
@@ -261,6 +330,9 @@
   html {
     @apply font-sans;
   }
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
 }
 
 @layer components {
@@ -268,31 +340,33 @@
     position: relative;
     overflow: hidden;
     transition: color 0.3s ease;
-    color: black;
-    
+    color: var(--sidebar-foreground);
+
     &::before {
       content: '';
       position: absolute;
       inset: 0;
       z-index: 0;
       opacity: 0;
-      background: linear-gradient(90deg, #7a13f0 50%, #aa7dff 100%);
+      background: var(--gradient-primary);
       transition: opacity 0.3s ease;
       border-radius: inherit;
     }
-    
+
     /* Show gradient on hover AND when active */
+    &:focus-visible::before,
     &:hover::before,
     &.active::before {
       opacity: 1;
     }
-    
-    /* Text color: white on hover or active */
+
+    /* Pair gradient surfaces with the theme foreground. */
+    &:focus-visible,
     &:hover,
     &.active {
-      color: white !important;
+      color: var(--primary-foreground);
     }
-    
+
     /* Keep children above the gradient */
     & > * {
       position: relative;

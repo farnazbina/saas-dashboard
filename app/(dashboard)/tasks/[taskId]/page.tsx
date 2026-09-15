@@ -145,11 +145,11 @@ const mockTasks: Record<string, Task> = {
 // ---------- Helper Components ----------
 function StatusBadge({ status }: { status: TaskStatus }) {
     const statusMap = {
-        todo: { label: "To Do", className: "bg-blue-100 text-blue-800 border-blue-300" },
-        "in-progress": { label: "In Progress", className: "bg-yellow-100 text-yellow-800 border-yellow-300" },
-        done: { label: "Done", className: "bg-green-100 text-green-800 border-green-300" },
-        blocked: { label: "Blocked", className: "bg-red-100 text-red-800 border-red-300" },
-        "in-review": { label: "In Review", className: "bg-purple-100 text-purple-800 border-purple-300" },
+        todo: { label: "To Do", className: "bg-task-todo-muted text-task-todo border-task-todo/30" },
+        "in-progress": { label: "In Progress", className: "bg-task-progress-muted text-task-progress border-task-progress/30" },
+        done: { label: "Done", className: "bg-task-done-muted text-task-done border-task-done/30" },
+        blocked: { label: "Blocked", className: "bg-task-blocked-muted text-task-blocked border-task-blocked/30" },
+        "in-review": { label: "In Review", className: "bg-task-inreview-muted text-task-inreview border-task-inreview/30" },
     };
     const { label, className } = statusMap[status];
     return (
@@ -161,9 +161,9 @@ function StatusBadge({ status }: { status: TaskStatus }) {
 
 function PriorityBadge({ priority }: { priority: TaskPriority }) {
     const priorityMap = {
-        low: { label: "Low", className: "bg-green-100 text-green-800 border-green-300" },
-        medium: { label: "Medium", className: "bg-yellow-100 text-yellow-800 border-yellow-300" },
-        high: { label: "High", className: "bg-red-100 text-red-800 border-red-300" },
+        low: { label: "Low", className: "bg-success-muted text-success border-success/30" },
+        medium: { label: "Medium", className: "bg-warning-muted text-warning border-warning/30" },
+        high: { label: "High", className: "bg-error-muted text-error border-error/30" },
     };
     const { label, className } = priorityMap[priority];
     return (

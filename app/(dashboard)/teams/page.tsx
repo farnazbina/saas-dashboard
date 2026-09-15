@@ -105,9 +105,9 @@ const STATUS_LABELS: Record<MemberStatus, string> = {
 };
 
 const STATUS_COLORS: Record<MemberStatus, string> = {
-    active: "bg-green-100 text-green-800 border-green-300",
-    "on-leave": "bg-yellow-100 text-yellow-800 border-yellow-300",
-    probation: "bg-blue-100 text-blue-800 border-blue-300",
+    active: "bg-success-muted text-success border-success/30",
+    "on-leave": "bg-warning-muted text-warning border-warning/30",
+    probation: "bg-info-muted text-info border-info/30",
 };
 
 function StatusBadge({ status }: { status: MemberStatus }) {

@@ -279,31 +279,31 @@ const mockInvoices: Record<string, Invoice[]> = {
 
 // ---------- Helpers ----------
 const statusColors: Record<ClientStatus, string> = {
-    active: "bg-green-100 text-green-800 border-green-300",
-    inactive: "bg-gray-100 text-gray-800 border-gray-300",
-    pending: "bg-yellow-100 text-yellow-800 border-yellow-300",
+    active: "bg-success-muted text-success border-success/30",
+    inactive: "bg-muted text-muted-foreground border-border",
+    pending: "bg-warning-muted text-warning border-warning/30",
 };
 
 const invoiceStatusColors: Record<InvoiceStatus, string> = {
-    paid: "bg-green-100 text-green-800 border-green-300",
-    pending: "bg-yellow-100 text-yellow-800 border-yellow-300",
-    overdue: "bg-red-100 text-red-800 border-red-300",
+    paid: "bg-success-muted text-success border-success/30",
+    pending: "bg-warning-muted text-warning border-warning/30",
+    overdue: "bg-error-muted text-error border-error/30",
 };
 
 const taskStatusColors: Record<TaskStatus, string> = {
-    todo: "bg-blue-100 text-blue-800 border-blue-300",
-    "in-progress": "bg-yellow-100 text-yellow-800 border-yellow-300",
-    done: "bg-green-100 text-green-800 border-green-300",
-    blocked: "bg-red-100 text-red-800 border-red-300",
-    "in-review": "bg-purple-100 text-purple-800 border-purple-300",
+    todo: "bg-task-todo-muted text-task-todo border-task-todo/30",
+    "in-progress": "bg-task-progress-muted text-task-progress border-task-progress/30",
+    done: "bg-task-done-muted text-task-done border-task-done/30",
+    blocked: "bg-task-blocked-muted text-task-blocked border-task-blocked/30",
+    "in-review": "bg-task-inreview-muted text-task-inreview border-task-inreview/30",
 };
 
 // ---------- Task Card Component ----------
 function TaskCard({ task }: { task: Task }) {
     const priorityColors = {
-        low: "bg-green-100 text-green-800 border-green-300",
-        medium: "bg-yellow-100 text-yellow-800 border-yellow-300",
-        high: "bg-red-100 text-red-800 border-red-300",
+        low: "bg-success-muted text-success border-success/30",
+        medium: "bg-warning-muted text-warning border-warning/30",
+        high: "bg-error-muted text-error border-error/30",
     };
 
     return (
@@ -474,9 +474,9 @@ export default function ClientDetailPage() {
                                             variant="outline"
                                             className={cn(
                                                 "text-xs",
-                                                project.priority === "high" && "bg-red-100 text-red-800 border-red-300",
-                                                project.priority === "medium" && "bg-yellow-100 text-yellow-800 border-yellow-300",
-                                                project.priority === "low" && "bg-green-100 text-green-800 border-green-300"
+                                                project.priority === "high" && "bg-error-muted text-error border-error/30",
+                                                project.priority === "medium" && "bg-warning-muted text-warning border-warning/30",
+                                                project.priority === "low" && "bg-success-muted text-success border-success/30"
                                             )}
                                         >
                                             {project.priority.charAt(0).toUpperCase() + project.priority.slice(1)}
@@ -510,8 +510,8 @@ export default function ClientDetailPage() {
                     <p className="text-muted-foreground">No invoices for this client.</p>
                 ) : (
                     <div className="border rounded-md">
-                        <Table className="bg-white rounded-md">
-                            <TableHeader className="bg-gray-50">
+                        <Table className="bg-card rounded-md">
+                            <TableHeader className="bg-muted">
                                 <TableRow className="h-12">
                                     <TableHead>Invoice #</TableHead>
                                     <TableHead className="text-right">Amount</TableHead>

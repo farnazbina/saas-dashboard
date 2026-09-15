@@ -68,7 +68,7 @@ export default function AppSidebar() {
                             return(
                             <SidebarMenuItem key={index}>
                                 <SidebarMenuButton
-                                    className={`h-11 w-full gradient-hover text-text hover:text-white duration-300 transition-colors ${isActive ? 'active' : ''}`}
+                                    className={`h-11 w-full gradient-hover text-text  duration-300 transition-colors ${isActive ? 'active' : ''}`}
                                 >
                                     <Link href={item.link} className="h-11 w-full text-text cursor-pointer flex items-center gap-x-4 text-[16px] font-regular">
                                         {item.icon}
@@ -80,7 +80,7 @@ export default function AppSidebar() {
                     </SidebarMenu>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter className="bg-white">
+            <SidebarFooter className="bg-sidebar">
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton className="h-12">
