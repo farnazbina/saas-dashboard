@@ -1,7 +1,7 @@
 'use server'
 
 import prisma from "@/lib/prisma";
-import { revalidatePath, revalidateTag, unstable_cache } from "next/cache";
+import { revalidatePath, updateTag, unstable_cache } from "next/cache";
 import { cache } from "react";
 import z, { success } from "zod";
 
@@ -48,7 +48,7 @@ export async function createProject(formData: FormData) {
         })
 
         // به‌روزرسانی کش صفحه‌ی پروژه‌ها
-        revalidateTag('projects-list')
+        updateTag('projects-list')
         revalidatePath('/projects')
 
         return {
@@ -153,5 +153,5 @@ export const getProjects = unstable_cache(
         })
     },
     ['projects-list'],
-    { revalidate: 3600 } // هر ۶۰ ثانیه یکبار کش به‌روز میشه
+    { revalidate: 3600, tags: ['projects-list'] } // هر ۶۰ ثانیه یکبار کش به‌روز میشه
 )

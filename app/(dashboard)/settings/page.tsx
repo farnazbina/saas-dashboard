@@ -217,7 +217,7 @@ export default function SettingsPage() {
                                                 aria-invalid={fieldState.invalid}
                                             />
                                             {fieldState.invalid && (
-                                                <FieldError errors={[fieldState.error?.message]} />
+                                                <FieldError errors={[fieldState.error]} />
                                             )}
                                         </Field>
                                     )}
@@ -239,7 +239,7 @@ export default function SettingsPage() {
                                                 aria-invalid={fieldState.invalid}
                                             />
                                             {fieldState.invalid && (
-                                                <FieldError errors={[fieldState.error?.message]} />
+                                                <FieldError errors={[fieldState.error]} />
                                             )}
                                         </Field>
                                     )}
@@ -265,7 +265,7 @@ export default function SettingsPage() {
                                                 aria-invalid={fieldState.invalid}
                                             />
                                             {fieldState.invalid && (
-                                                <FieldError errors={[fieldState.error?.message]} />
+                                                <FieldError errors={[fieldState.error]} />
                                             )}
                                         </Field>
                                     )}
@@ -289,7 +289,7 @@ export default function SettingsPage() {
                                                 Optional. We'll only use this for urgent contact.
                                             </FieldDescription>
                                             {fieldState.invalid && (
-                                                <FieldError errors={[fieldState.error?.message]} />
+                                                <FieldError errors={[fieldState.error]} />
                                             )}
                                         </Field>
                                     )}
@@ -325,7 +325,7 @@ export default function SettingsPage() {
                                                 Brief description for your profile. Max 300 characters.
                                             </FieldDescription>
                                             {fieldState.invalid && (
-                                                <FieldError errors={[fieldState.error?.message]} />
+                                                <FieldError errors={[fieldState.error]} />
                                             )}
                                         </Field>
                                     );

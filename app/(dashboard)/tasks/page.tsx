@@ -141,7 +141,7 @@ function TaskCard({ task, index, onMove }: TaskCardProps) {
 
     return (
         <div
-            ref={drag}
+            ref={(node) => { drag(node); }}
             className={cn(
                 "p-4 mb-2 rounded-lg border shadow-sm cursor-grab transition-opacity space-y-2",
                 STATUS_COLORS[task.status],
@@ -206,7 +206,7 @@ function Column({ status, tasks, onMove }: ColumnProps) {
 
     return (
         <div
-            ref={drop}
+            ref={(node) => { drop(node); }}
             className={cn(
                 "flex flex-col min-h-[300px] p-3 rounded-lg border-2 border-dashed transition-colors",
                 isOver ? "border-primary bg-primary/5" : "border-transparent"

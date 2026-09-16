@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# Dreams Dashboard
 
-## Getting Started
+A SaaS dashboard portfolio project by **Farnaz Bina**, bringing project tracking, client management, and team workflows into one workspace. Built with Next.js, React, and TypeScript, with a PostgreSQL-backed project workflow and interactive demo screens.
 
-First, run the development server:
+**Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Prisma 7 · PostgreSQL**
+
+[Features](#features) · [Screenshots](#screenshots) · [Tech stack](#tech-stack) · [Run locally](#run-locally) · [Project structure](#project-structure)
+
+[![Dashboard overview with KPI cards, project progress chart, task distribution, and recent clients](docs/screenshots/overview.png)](docs/screenshots/overview.png)
+
+## Features
+
+- **Dashboard overview** — KPI cards for active projects, completed tasks, team members, and on-time delivery, alongside project progress and task distribution charts.
+- **Project workspace** — database-backed project listing and creation, with category, client, team lead, and member selection. Forms validate input before submitting through server actions.
+- **Kanban task board** — drag tasks between To Do, In Progress, Done, Blocked, and In Review. Cards display priorities, progress, and due dates.
+- **Client directory** — search, status filtering, sorting, pagination, and dialogs for managing demo clients. Client detail pages bring together related projects, tasks, and invoices.
+- **Invoice table** — search by client or invoice ID, browse paginated results, toggle paid status, and confirm deletions in the demo interface.
+- **Team and task detail views** — team member cards, plus task details with subtasks and comments.
+- **Profile settings** — validated profile fields and an avatar upload preview with drag-and-drop support.
+- **Authentication screens** — login, signup, and a two-step password recovery interface with validation and password visibility controls.
+- **Shared UI** — light and dark themes, responsive grids, collapsible sidebar navigation, reusable components, and loading states.
+
+### Current scope
+
+This is an evolving portfolio project. The project listing and creation flow connect to PostgreSQL through Prisma; API routes provide projects, categories, clients, and users. The overview, task board, client directory, invoices, and team screens use sample data. Changes on those demo screens stay in local component state and reset on reload.
+
+Authentication and profile saving are UI demonstrations with simulated submissions. Account sessions, email delivery, Google sign-in, and persistent profile updates are not connected yet. Dashboard metrics are illustrative rather than calculated from the database.
+
+## Screenshots
+
+Actual captures of the local application in light mode at a 1600 × 1080 desktop viewport, using the included demo data. Click an image to view it at full size.
+
+### Task board
+
+Five workflow columns make task status, priorities, and progress easy to scan.
+
+[![Kanban task board showing five status columns with priority badges and progress bars](docs/screenshots/tasks.png)](docs/screenshots/tasks.png)
+
+### Client directory
+
+Summary cards, search and filter controls, and a client table with revenue and status information.
+
+[![Client directory with summary cards, filters, and a table of sample clients](docs/screenshots/clients.png)](docs/screenshots/clients.png)
+
+## Tech stack
+
+| Area | Technologies |
+| --- | --- |
+| Framework | Next.js 16 App Router, React 19, TypeScript 5 |
+| Styling | Tailwind CSS 4, semantic theme tokens, tw-animate-css |
+| UI components | shadcn/ui, Base UI, Lucide icons |
+| Charts | Recharts 3 |
+| Forms and validation | React Hook Form, Zod 4, Hook Form resolvers |
+| Data fetching | TanStack Query 5, Next.js server actions and route handlers |
+| Database | PostgreSQL, Prisma ORM 7, PostgreSQL driver adapter |
+| Drag and drop | React DnD with the HTML5 backend |
+| Themes and feedback | next-themes, Sonner |
+| Tooling | pnpm, ESLint 9, tsx |
+
+## Run locally
+
+### Prerequisites
+
+- Node.js **22.12+ within the 22.x release line**, or another version supported by the installed Prisma package (`^20.19`, `^22.12`, or `>=24`).
+- pnpm.
+- A PostgreSQL database for the project workflow.
+
+### 1. Install dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/farnazbina/saas-dashboard.git
+cd saas-dashboard
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Configure the database
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env` file in the project root and set your PostgreSQL connection string:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```dotenv
+DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/saas_dashboard?schema=public"
+```
 
-## Learn More
+Use a fresh development database for the following setup commands. The repository currently includes a Prisma schema but no migration history, so `db push` creates the tables directly.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm exec prisma db push
+pnpm db:generate
+pnpm exec prisma db seed
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The seed script adds sample categories, clients, users, and projects so the project form has selectable records. Run it once on an empty database: it uses direct inserts and is not designed for repeated runs.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. Start the application
 
-## Deploy on Vercel
+```bash
+pnpm dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open [localhost:3000/overview](http://localhost:3000/overview). The root route `/` also redirects to `/overview`; no sign-in is required to explore the dashboard. If port 3000 is occupied, use the URL printed by Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The overview, task board, and other sample-data screens can be previewed without populated database tables. The project pages and database API routes require the database setup above.
+
+### Available scripts
+
+| Command | Purpose |
+| --- | --- |
+| `pnpm dev` | Generate Prisma Client and start the development server |
+| `pnpm build` | Generate Prisma Client and build the application |
+| `pnpm start` | Serve an existing production build |
+| `pnpm lint` | Run ESLint |
+| `pnpm db:generate` | Regenerate Prisma Client after schema changes |
+
+## Project structure
+
+```text
+app/
+  (auth)/             Login, signup, and password recovery screens
+  (dashboard)/        Overview, projects, clients, tasks, invoices, teams, settings
+  actions/            Project server actions
+  api/                Projects, categories, clients, and users endpoints
+components/
+  dashboard/          Overview cards, charts, and project components
+  layout/             Sidebar, header, and theme toggle
+  ui/                 Shared UI primitives
+lib/                  Prisma client, query hooks, and utilities
+prisma/               Database schema and sample-data seed
+providers/            Theme and TanStack Query providers
+docs/
+  screenshots/        Screenshots used in this README
+  style-guide.md      Design tokens and component styling guidance
+```
+
+## Explore the code
+
+- [Overview page](app/%28dashboard%29/overview/page.tsx) — composition of the dashboard cards, charts, and recent clients.
+- [Task board](app/%28dashboard%29/tasks/page.tsx) — drag-and-drop interactions with React DnD.
+- [Project creation](app/%28dashboard%29/projects/create/page.tsx) — form validation and related-record selection.
+- [Database schema](prisma/schema.prisma) — projects, categories, clients, users, and their relationships.
+- [Style guide](docs/style-guide.md) — shared visual conventions.
+
+Created by [Farnaz Bina](https://github.com/farnazbina).

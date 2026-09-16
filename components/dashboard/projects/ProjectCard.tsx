@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 
-type ProjectStatus = "TODO" | "IN_PROGRESS" | "Done" 
+type ProjectStatus = "TODO" | "IN_PROGRESS" | "DONE"
 
 interface Props {
     title: string
@@ -19,7 +19,7 @@ const statusStyles: Record<ProjectStatus, { bg: string; text: string }> = {
         bg: "bg-task-progress-muted border-task-progress/30",
         text: "text-task-progress",
     },
-    "Done": {
+    "DONE": {
         bg: "bg-task-done-muted border-task-done/30",
         text: "text-task-done",
     },

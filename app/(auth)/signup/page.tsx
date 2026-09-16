@@ -111,7 +111,7 @@ export default function SignupPage() {
             4: { label: "Strong", color: "bg-success" },
             5: { label: "Very Strong", color: "bg-success" },
         };
-        return map[score] || map[0];
+        return { score, ...(map[score] || map[0]) };
     };
 
     const passwordValue = form.watch("password");
@@ -196,7 +196,7 @@ export default function SignupPage() {
                                                 aria-invalid={fieldState.invalid}
                                             />
                                             {fieldState.invalid && (
-                                                <FieldError errors={[fieldState.error?.message]} />
+                                                <FieldError errors={[fieldState.error]} />
                                             )}
                                         </Field>
                                     )}
@@ -215,7 +215,7 @@ export default function SignupPage() {
                                                 aria-invalid={fieldState.invalid}
                                             />
                                             {fieldState.invalid && (
-                                                <FieldError errors={[fieldState.error?.message]} />
+                                                <FieldError errors={[fieldState.error]} />
                                             )}
                                         </Field>
                                     )}
@@ -238,7 +238,7 @@ export default function SignupPage() {
                                             aria-invalid={fieldState.invalid}
                                         />
                                         {fieldState.invalid && (
-                                            <FieldError errors={[fieldState.error?.message]} />
+                                            <FieldError errors={[fieldState.error]} />
                                         )}
                                     </Field>
                                 )}
@@ -313,7 +313,7 @@ export default function SignupPage() {
                                             </div>
                                         )}
                                         {fieldState.invalid && (
-                                            <FieldError errors={[fieldState.error?.message]} />
+                                            <FieldError errors={[fieldState.error]} />
                                         )}
                                     </Field>
                                 )}
@@ -354,7 +354,7 @@ export default function SignupPage() {
                                             </button>
                                         </div>
                                         {fieldState.invalid && (
-                                            <FieldError errors={[fieldState.error?.message]} />
+                                            <FieldError errors={[fieldState.error]} />
                                         )}
                                     </Field>
                                 )}
@@ -394,7 +394,7 @@ export default function SignupPage() {
                                             </label>
                                         </div>
                                         {fieldState.invalid && (
-                                            <FieldError errors={[fieldState.error?.message]} />
+                                            <FieldError errors={[fieldState.error]} />
                                         )}
                                     </Field>
                                 )}

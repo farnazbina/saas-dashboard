@@ -395,7 +395,7 @@ export default function ClientsPage() {
                         </SelectContent>
                     </Select>
 
-                    <Select value={sortOption} onValueChange={(val) => setSortOption(val)}>
+                    <Select value={sortOption} onValueChange={(val) => setSortOption(val ?? "newest")}>
                         <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="Sort by" />
                         </SelectTrigger>

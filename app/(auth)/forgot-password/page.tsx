@@ -178,7 +178,7 @@ export default function ForgotPasswordPage() {
                                                 aria-invalid={fieldState.invalid}
                                             />
                                             {fieldState.invalid && (
-                                                <FieldError errors={[fieldState.error?.message]} />
+                                                <FieldError errors={[fieldState.error]} />
                                             )}
                                         </Field>
                                     )}
@@ -217,7 +217,7 @@ export default function ForgotPasswordPage() {
                                                 </InputGroupAddon>
                                             </InputGroup>
                                             {fieldState.invalid && (
-                                                <FieldError errors={[fieldState.error?.message]} />
+                                                <FieldError errors={[fieldState.error]} />
                                             )}
                                         </Field>
                                     )}

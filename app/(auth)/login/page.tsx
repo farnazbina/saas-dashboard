@@ -41,7 +41,7 @@ export default function LoginPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    const form = useForm<LoginFormValues>({
+    const form = useForm<z.input<typeof loginSchema>, unknown, LoginFormValues>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
             email: "",
@@ -151,7 +151,7 @@ export default function LoginPage() {
                                             aria-invalid={fieldState.invalid}
                                         />
                                         {fieldState.invalid && (
-                                            <FieldError errors={[fieldState.error?.message]} />
+                                            <FieldError errors={[fieldState.error]} />
                                         )}
                                     </Field>
                                 )}
@@ -188,7 +188,7 @@ export default function LoginPage() {
                                             </button>
                                         </div>
                                         {fieldState.invalid && (
-                                            <FieldError errors={[fieldState.error?.message]} />
+                                            <FieldError errors={[fieldState.error]} />
                                         )}
                                     </Field>
                                 )}
@@ -215,7 +215,7 @@ export default function LoginPage() {
                                             </label>
                                         </div>
                                         {fieldState.invalid && (
-                                            <FieldError errors={[fieldState.error?.message]} />
+                                            <FieldError errors={[fieldState.error]} />
                                         )}
                                     </Field>
                                 )}
