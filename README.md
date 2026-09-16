@@ -81,10 +81,10 @@ Create a `.env` file in the project root and set your PostgreSQL connection stri
 DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/saas_dashboard?schema=public"
 ```
 
-Use a fresh development database for the following setup commands. The repository currently includes a Prisma schema but no migration history, so `db push` creates the tables directly.
+Use a fresh development database for the following setup commands. The initial migration creates the tables, relations, indexes, and enums.
 
 ```bash
-pnpm exec prisma db push
+pnpm db:deploy
 pnpm db:generate
 pnpm exec prisma db seed
 ```
@@ -110,6 +110,36 @@ The overview, task board, and other sample-data screens can be previewed without
 | `pnpm start` | Serve an existing production build |
 | `pnpm lint` | Run ESLint |
 | `pnpm db:generate` | Regenerate Prisma Client after schema changes |
+| `pnpm db:deploy` | Apply committed database migrations |
+| `pnpm vercel-build` | Apply migrations, generate Prisma Client, and build for Vercel |
+
+## Deploy to Vercel
+
+Set `DATABASE_URL` in the Vercel project's environment variables to the intended PostgreSQL database. Configure the environment you are deploying (Production or Preview); use a separate database for previews. The migration connection must have permission to create tables and enums.
+
+The committed `vercel.json` selects `pnpm vercel-build`, which runs migrations before Next.js builds pages that query the database. `prisma generate` alone only generates client code; it does not create tables. Commit the migration files along with the build configuration, then redeploy.
+
+For a fresh database, the initial migration creates the schema automatically. Seeding is optional and is not run during deployment. An empty projects list is expected until projects are added.
+
+### Existing databases created with `db push`
+
+If a database already contains **all** tables, relations, enums, and indexes defined in `prisma/schema.prisma`, baseline it once before deploying. First verify it matches the schema using a connection to that database:
+
+```bash
+pnpm exec prisma migrate diff --from-config-datasource --to-schema prisma/schema.prisma --exit-code
+```
+
+Only when this reports no differences (exit code 0), record the initial migration as already applied:
+
+```bash
+pnpm exec prisma migrate resolve --applied 20260916000000_init
+```
+
+This records migration history without recreating existing tables. Do not mark the migration as applied on an empty or partially initialized database: missing tables would remain missing. If there are differences, reconcile the schema before baselining.
+
+If deployment still reports `TableDoesNotExist`, check that Vercel's `DATABASE_URL` targets the same database and PostgreSQL schema that received the migrations. `Project` maps to the lowercase `projects` table; related `categories`, `clients`, and `users` tables must also exist.
+
+See Prisma's guides to [production migrations](https://docs.prisma.io/docs/orm/prisma-client/deployment/deploy-database-changes-with-prisma-migrate) and [baselining existing databases](https://www.prisma.io/docs/orm/prisma-migrate/workflows/baselining).
 
 ## Project structure
 
