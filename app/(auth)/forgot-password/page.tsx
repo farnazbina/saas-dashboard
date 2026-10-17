@@ -142,7 +142,7 @@ export default function ForgotPasswordPage() {
                     <div className="flex justify-center mb-2">
                         <div className="h-12 w-12 relative">
                             <Image
-                                src="/logo.png"
+                                src="/images/Logo.png"
                                 alt="Logo"
                                 fill
                                 className="object-contain"

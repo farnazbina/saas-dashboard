@@ -80,7 +80,7 @@ export default function LoginPage() {
                     <div className="flex justify-center mb-2">
                         <div className="h-12 w-12 relative">
                             <Image
-                                src="/logo.png" // Replace with your actual logo
+                                src="/images/Logo.png"
                                 alt="Logo"
                                 fill
                                 className="object-contain"

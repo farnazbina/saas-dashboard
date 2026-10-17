@@ -1,6 +1,6 @@
 'use server'
 
-import prisma from "@/lib/prisma";
+// import prisma from "@/lib/prisma";
 import { revalidatePath, updateTag, unstable_cache } from "next/cache";
 import { cache } from "react";
 import z, { success } from "zod";
@@ -36,16 +36,16 @@ export async function createProject(formData: FormData) {
 
     try {
         // ایجاد پروژه در دیتابیس
-        await prisma.project.create({
-            data: {
-                name,
-                description,
-                categoryId,
-                clientId,
-                teamLeadId,
-                memberId: memberId
-            },
-        })
+        // await prisma.project.create({
+        //     data: {
+        //         name,
+        //         description,
+        //         categoryId,
+        //         clientId,
+        //         teamLeadId,
+        //         memberId: memberId
+        //     },
+        // })
 
         // به‌روزرسانی کش صفحه‌ی پروژه‌ها
         updateTag('projects-list')
@@ -86,17 +86,17 @@ export async function updateProject(id: string, formData: FormData) {
 
     try {
         // بروزرسانی پروژه
-        await prisma.project.update({
-            where: { id },
-            data: {
-                name,
-                description,
-                categoryId,
-                clientId,
-                teamLeadId,
-                memberId
-            },
-        })
+        // await prisma.project.update({
+        //     where: { id },
+        //     data: {
+        //         name,
+        //         description,
+        //         categoryId,
+        //         clientId,
+        //         teamLeadId,
+        //         memberId
+        //     },
+        // })
 
         revalidatePath('/dashboard/projects')
         revalidatePath(`/dashboard/projects/${id}`)
@@ -117,9 +117,9 @@ export async function updateProject(id: string, formData: FormData) {
 // ---------- حذف پروژه ----------
 export async function deleteProject(id: string) {
     try {
-        await prisma.project.delete({
-            where: { id },
-        })
+        // await prisma.project.delete({
+        //     where: { id },
+        // })
 
         revalidatePath('/dashboard/projects')
         return {
@@ -139,18 +139,18 @@ export async function deleteProject(id: string) {
 export const getProjects = unstable_cache(
     async () => {
         console.log('🔵 Fetching projects from database...')
-        return await prisma.project.findMany({
-            select: {
-                id: true,
-                name: true,
-                status: true,
-                category: { select: { name: true } },
-                client: { select: { name: true } },
-                teamLead: { select: { name: true } },
-                member: { select: { name: true } },
-            },
-            orderBy: { createdAt: 'desc' },
-        })
+        // return await prisma.project.findMany({
+        //     select: {
+        //         id: true,
+        //         name: true,
+        //         status: true,
+        //         category: { select: { name: true } },
+        //         client: { select: { name: true } },
+        //         teamLead: { select: { name: true } },
+        //         member: { select: { name: true } },
+        //     },
+        //     orderBy: { createdAt: 'desc' },
+        // })
     },
     ['projects-list'],
     { revalidate: 3600, tags: ['projects-list'] } // هر ۶۰ ثانیه یکبار کش به‌روز میشه

@@ -1,17 +1,18 @@
-import { Category } from "./categories"
+// types/project.ts
 
-export type Projects = {
-  id: string
-  name: string
-  description: string
-  status: string
-  categoryId: string
-  category: Category
-  clientId: string
-//   client      Client   @relation(fields: [clientId], references: [id])
-  teamLeadId: string
-//   teamLead    User     @relation("TeamLead", fields: [teamLeadId], references: [id])
-//   members     User[]   @relation("TeamMembers")
-  createdAt: string
-  updatedAt: string
+export type ProjectStatus =
+  | "active"
+  | "completed"
+  | "on-hold";
+
+export interface Project {
+  id: string;
+  name: string;
+  description: string;
+  status: ProjectStatus;
+  startDate: string;
+  dueDate: string | null;
+  memberIds: string[];
+  createdAt: string;
+  updatedAt: string;
 }

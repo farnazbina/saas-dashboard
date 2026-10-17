@@ -28,7 +28,31 @@ Authentication and profile saving are UI demonstrations with simulated submissio
 
 ## Screenshots
 
-Actual captures of the local application in light mode at a 1600 × 1080 desktop viewport, using the included demo data. Click an image to view it at full size.
+### Kanban in action
+
+Move tasks between workflow columns with drag and drop. This recording shows task status badges and column counts updating as tasks move to In Progress, In Review, and Done.
+
+[![Animated demonstration of dragging tasks between Kanban columns](docs/screenshots/kanban-demo.gif)](docs/screenshots/kanban-demo.gif)
+
+Actual full-page captures of the local application in light mode at a 1600 × 1080 desktop viewport and 2× pixel density. Every PNG has the same **3392-pixel width**, a matching browser-style frame, and a height that fits the page. Captures include the app's demo data and current local project data. Click an image to view it at full size.
+
+| Page | Screenshot |
+| --- | --- |
+| Overview | [View](docs/screenshots/overview.png) |
+| Projects | [View](docs/screenshots/projects.png) |
+| Create project | [View](docs/screenshots/create-project.png) |
+| Task board | [View](docs/screenshots/tasks.png) |
+| Task details | [View](docs/screenshots/task-detail.png) |
+| Client directory | [View](docs/screenshots/clients.png) |
+| Client details | [View](docs/screenshots/client-detail.png) |
+| Invoices | [View](docs/screenshots/invoices.png) |
+| Teams | [View](docs/screenshots/teams.png) |
+| Settings | [View](docs/screenshots/settings.png) |
+| Log in | [View](docs/screenshots/login.png) |
+| Sign up | [View](docs/screenshots/signup.png) |
+| Password recovery | [View](docs/screenshots/forgot-password.png) |
+
+The root URL redirects to Overview. Detail screenshots use representative sample records. See [capture instructions](docs/screenshots/README.md) to regenerate the images.
 
 ### Task board
 

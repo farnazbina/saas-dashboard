@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { useDrag, useDrop, DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { useDrag, useDragLayer, useDrop, DndProvider } from "react-dnd";
+import { getEmptyImage, HTML5Backend } from "react-dnd-html5-backend";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
@@ -118,19 +119,43 @@ const ItemTypes = {
 // ---------- Task Card (Draggable) ----------
 interface TaskCardProps {
     task: Task;
-    index: number;
-    onMove: (taskId: string, newStatus: TaskStatus) => void;
 }
 
-function TaskCard({ task, index, onMove }: TaskCardProps) {
-    const [{ isDragging }, drag] = useDrag(() => ({
+interface DraggedTask {
+    task: Task;
+    width: number;
+    height: number;
+}
+
+function TaskCard({ task }: TaskCardProps) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const [{ isDragging }, drag, preview] = useDrag(() => ({
         type: ItemTypes.TASK,
-        item: { id: task.id, status: task.status, index },
+        item: () => ({
+            task,
+            width: cardRef.current?.getBoundingClientRect().width ?? 280,
+            height: cardRef.current?.getBoundingClientRect().height ?? 200,
+        } satisfies DraggedTask),
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging(),
         }),
-    }));
+    }), [task]);
 
+    useEffect(() => {
+        preview(getEmptyImage(), { captureDraggingState: true });
+    }, [preview]);
+
+    return (
+        <div
+            ref={(node) => { cardRef.current = node; drag(node); }}
+            className={cn("cursor-grab", isDragging && "opacity-30")}
+        >
+            <TaskCardContent task={task} />
+        </div>
+    );
+}
+
+function TaskCardContent({ task }: TaskCardProps) {
     const dueDateFormatted = task.dueDate
         ? new Date(task.dueDate).toLocaleDateString("en-US", {
             month: "short",
@@ -141,11 +166,9 @@ function TaskCard({ task, index, onMove }: TaskCardProps) {
 
     return (
         <div
-            ref={(node) => { drag(node); }}
             className={cn(
-                "p-4 mb-2 rounded-lg border shadow-sm cursor-grab transition-opacity space-y-2",
+                "p-4 rounded-lg border shadow-sm space-y-2",
                 STATUS_COLORS[task.status],
-                isDragging && "opacity-50"
             )}
         >
             <div className="flex items-start justify-between">
@@ -186,23 +209,79 @@ function TaskCard({ task, index, onMove }: TaskCardProps) {
     );
 }
 
+function TaskDragPreview() {
+    const { item, offset, isDragging } = useDragLayer((monitor) => ({
+        item: monitor.getItem<DraggedTask>(),
+        offset: monitor.getSourceClientOffset(),
+        isDragging: monitor.isDragging() && monitor.getItemType() === ItemTypes.TASK,
+    }));
+
+    if (!isDragging || !item || !offset) return null;
+
+    return createPortal(
+        <div className="pointer-events-none fixed inset-0 z-50" aria-hidden="true">
+            <div
+                className="rounded-lg bg-background shadow-xl"
+                style={{
+                    width: item.width,
+                    transform: `translate(${offset.x}px, ${offset.y}px)`,
+                }}
+            >
+                <TaskCardContent task={item.task} />
+            </div>
+        </div>,
+        document.body
+    );
+}
+
 // ---------- Column (Drop Target) ----------
 interface ColumnProps {
     status: TaskStatus;
     tasks: Task[];
-    onMove: (taskId: string, newStatus: TaskStatus) => void;
+    onMove: (taskId: Task["id"], newStatus: TaskStatus, beforeId: Task["id"] | null) => void;
 }
 
 function Column({ status, tasks, onMove }: ColumnProps) {
-    const [{ isOver }, drop] = useDrop(() => ({
+    const cardNodes = useRef(new Map<Task["id"], HTMLDivElement>());
+    const placeholderRef = useRef<HTMLDivElement>(null);
+    const insertionRef = useRef<Task["id"] | null>(null);
+    const [beforeId, setBeforeId] = useState<Task["id"] | null>(null);
+    const [{ isOver, placeholderHeight }, drop] = useDrop(() => ({
         accept: ItemTypes.TASK,
-        drop: (item: { id: string }) => {
-            onMove(item.id, status);
+        hover: (item: DraggedTask, monitor) => {
+            const pointer = monitor.getClientOffset();
+            if (!pointer) return;
+
+            // Keep the insertion point stable while hovering inside its placeholder.
+            const placeholder = placeholderRef.current?.getBoundingClientRect();
+            if (placeholder && pointer.y >= placeholder.top && pointer.y <= placeholder.bottom) return;
+
+            const nextTask = tasks.find((task) => {
+                if (task.id === item.task.id) return false;
+                const bounds = cardNodes.current.get(task.id)?.getBoundingClientRect();
+                return bounds && pointer.y < bounds.top + bounds.height / 2;
+            });
+            insertionRef.current = nextTask?.id ?? null;
+            setBeforeId(insertionRef.current);
+        },
+        drop: (item: DraggedTask) => {
+            onMove(item.task.id, status, insertionRef.current);
         },
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
+            placeholderHeight: monitor.getItem<DraggedTask>()?.height,
         }),
-    }));
+    }), [onMove, status, tasks]);
+
+    const placeholder = isOver ? (
+        <div
+            ref={placeholderRef}
+            className="flex items-center justify-center rounded-lg border-2 border-dashed border-primary bg-primary/5 p-4 text-sm font-medium text-primary"
+            style={{ minHeight: placeholderHeight ?? 200 }}
+        >
+            Drop here
+        </div>
+    ) : null;
 
     return (
         <div
@@ -217,15 +296,19 @@ function Column({ status, tasks, onMove }: ColumnProps) {
                 <Badge variant="secondary">{tasks.length}</Badge>
             </div>
             <div className="flex-1 space-y-2">
-                {tasks.map((task, index) => (
-                    <TaskCard
-                        key={task.id}
-                        task={task}
-                        index={index}
-                        onMove={onMove}
-                    />
+                {tasks.map((task) => (
+                    <Fragment key={task.id}>
+                        {beforeId === task.id && placeholder}
+                        <div ref={(node) => {
+                            if (node) cardNodes.current.set(task.id, node);
+                            else cardNodes.current.delete(task.id);
+                        }}>
+                            <TaskCard task={task} />
+                        </div>
+                    </Fragment>
                 ))}
-                {tasks.length === 0 && (
+                {beforeId === null && placeholder}
+                {tasks.length === 0 && !isOver && (
                     <div className="text-sm text-muted-foreground text-center py-8">
                         No tasks
                     </div>
@@ -239,18 +322,26 @@ function Column({ status, tasks, onMove }: ColumnProps) {
 export default function KanbanPage() {
     const [tasks, setTasks] = useState<Task[]>(initialTasks);
 
-    const moveTask = (taskId: string, newStatus: TaskStatus) => {
-        setTasks((prev) =>
-            prev.map((task) =>
-                task.id === taskId ? { ...task, status: newStatus } : task
-            )
-        );
-        // Optionally, call an API to persist the change
-        console.log(`Task ${taskId} moved to ${newStatus}`);
+    const moveTask = (taskId: Task["id"], newStatus: TaskStatus, beforeId: Task["id"] | null) => {
+        setTasks((prev) => {
+            const task = prev.find((task) => task.id === taskId);
+            if (!task) return prev;
+
+            const remaining = prev.filter((task) => task.id !== taskId);
+            const insertionIndex = beforeId === null ? -1 : remaining.findIndex(
+                (task) => task.id === beforeId && task.status === newStatus
+            );
+            remaining.splice(insertionIndex < 0 ? remaining.length : insertionIndex, 0, {
+                ...task,
+                status: newStatus,
+            });
+            return remaining;
+        });
     };
 
     return (
         <DndProvider backend={HTML5Backend}>
+            <TaskDragPreview />
             <div className="py-6">
                 <h1 className="text-2xl font-bold mb-6">Kanban Board</h1>
                 <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-6">
