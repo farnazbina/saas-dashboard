@@ -14,8 +14,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --font-sans: var(--font-sans);
 
   /* Primary palette */
+  --color-primary: var(--primary);
   --color-primary-0: var(--primary-0);
   --color-primary-10: var(--primary-10);
   --color-primary-20: var(--primary-20);
@@ -26,9 +28,11 @@
   --color-primary-70: var(--primary-70);
   --color-primary-80: var(--primary-80);
   --color-primary-90: var(--primary-90);
+  --color-primary-95: var(--primary-95);
   --color-primary-100: var(--primary-100);
 
   /* Secondary palette */
+  --color-secondary: var(--secondary);
   --color-secondary-0: var(--secondary-0);
   --color-secondary-10: var(--secondary-10);
   --color-secondary-20: var(--secondary-20);
@@ -39,9 +43,11 @@
   --color-secondary-70: var(--secondary-70);
   --color-secondary-80: var(--secondary-80);
   --color-secondary-90: var(--secondary-90);
+  --color-secondary-95: var(--secondary-95);
   --color-secondary-100: var(--secondary-100);
 
   /* Tertiary palette */
+  --color-tertiary: var(--tertiary);
   --color-tertiary-0: var(--tertiary-0);
   --color-tertiary-10: var(--tertiary-10);
   --color-tertiary-20: var(--tertiary-20);
@@ -52,9 +58,11 @@
   --color-tertiary-70: var(--tertiary-70);
   --color-tertiary-80: var(--tertiary-80);
   --color-tertiary-90: var(--tertiary-90);
+  --color-tertiary-95: var(--tertiary-95);
   --color-tertiary-100: var(--tertiary-100);
 
   /* Neutral palette */
+  --color-neutral: var(--neutral);
   --color-neutral-0: var(--neutral-0);
   --color-neutral-10: var(--neutral-10);
   --color-neutral-20: var(--neutral-20);
@@ -65,6 +73,7 @@
   --color-neutral-70: var(--neutral-70);
   --color-neutral-80: var(--neutral-80);
   --color-neutral-90: var(--neutral-90);
+  --color-neutral-95: var(--neutral-95);
   --color-neutral-100: var(--neutral-100);
 
   /* Status colors */
@@ -79,9 +88,10 @@
 
 :root {
   color-scheme: light;
+  --font-sans: var(--font-plus-jakarta-sans);
 
   /* Semantic colors */
-  --background: #f9f8fe;
+  --background: #faf8ff;
   --foreground: #171717;
   --border: #e5e7eb;
   --input: #e5e7eb;
@@ -98,7 +108,7 @@
   --primary-60: #8582ff;
   --primary-70: #c3c0ff;
   --primary-80: #c3c0ff;
-  --primary-90: #f2efff;
+  --primary-90: #E2DFFF;
   --primary-95: #f2efff;
   --primary-100: #ffffff;
 
@@ -159,6 +169,7 @@
 
 .dark {
   color-scheme: dark;
+  --font-sans: var(--font-plus-jakarta-sans);
 
   /* Semantic colors */
   --background: #111118;
@@ -239,7 +250,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border font-sans;
   }
 
   body {
