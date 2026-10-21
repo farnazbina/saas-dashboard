@@ -1,3 +1,4 @@
+import { MyTasksTable } from "@/components/dashboard/overview/MyTaskstable";
 import { OverviewHeader } from "@/components/dashboard/overview/OverviewHeader";
 import { ProjectProgressChart } from "@/components/dashboard/overview/ProjectProgressChart";
 import { RecentActivity } from "@/components/dashboard/overview/RecentActivities";
@@ -18,6 +19,7 @@ export default function DashboardPage() {
         <UpcomingDeadlines />
         <RecentActivity />
       </div>
+      <MyTasksTable />
     </div>
   );
 }
