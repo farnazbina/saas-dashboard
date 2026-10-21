@@ -1,5 +1,6 @@
 import { OverviewHeader } from "@/components/dashboard/overview/OverviewHeader";
 import { ProjectProgressChart } from "@/components/dashboard/overview/ProjectProgressChart";
+import { RecentActivity } from "@/components/dashboard/overview/RecentActivities";
 import { StatCards } from "@/components/dashboard/overview/StatCards";
 import { TasksByStatusChart } from "@/components/dashboard/overview/TaskByStatusChart";
 import { UpcomingDeadlines } from "@/components/dashboard/overview/UpcomingDeadlines";
@@ -15,7 +16,7 @@ export default function DashboardPage() {
       </div>
       <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
         <UpcomingDeadlines />
-        {/* <RecentActivity /> */}
+        <RecentActivity />
       </div>
     </div>
   );
