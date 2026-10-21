@@ -11,7 +11,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Pill } from "@/components/dashboard/overview/Pill";
 
-export function ProjectsHeader({ total }: { total: number }) {
+export function ProjectsHeader({
+  total,
+  onCreate,
+}: {
+  total: number;
+  onCreate: () => void;
+}) {
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       <div>
@@ -39,7 +45,7 @@ export function ProjectsHeader({ total }: { total: number }) {
             Import Projects
             <ChevronDown className="size-3.5 text-muted-foreground" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="bg-card">
+          <DropdownMenuContent align="end">
             <DropdownMenuItem>From CSV</DropdownMenuItem>
             <DropdownMenuItem>From Trello</DropdownMenuItem>
             <DropdownMenuItem>From Jira</DropdownMenuItem>
@@ -48,6 +54,7 @@ export function ProjectsHeader({ total }: { total: number }) {
 
         <Button
           size="sm"
+          onClick={onCreate}
           className="gap-2 bg-brand text-white hover:bg-brand/90"
         >
           <Plus className="size-4" />
@@ -67,7 +74,7 @@ export function ProjectsHeader({ total }: { total: number }) {
           >
             <MoreHorizontal className="size-4" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="bg-card">
+          <DropdownMenuContent align="end">
             <DropdownMenuItem>Export as CSV</DropdownMenuItem>
             <DropdownMenuItem>View archived</DropdownMenuItem>
           </DropdownMenuContent>

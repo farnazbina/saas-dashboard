@@ -4,7 +4,7 @@ export type ProjectStatus = "In Progress" | "At Risk" | "Planned" | "Completed"
 export type ProjectPriority = "Urgent" | "High" | "Medium" | "Low"
 export type ProjectIconKey =
   | "web" | "mobile" | "crm" | "design" | "analytics" | "auth" | "billing" | "api" | "megaphone" | "data"
-  | "support" | "bell" | "tools" | "gauge" | "server" | "globe" | "book" | "map" | "mail" | "language"
+  | "support" | "bell" | "tools" | "gauge" | "server" | "globe" | "book" | "map" | "mail" | "language" | "folder"
 
 export type Project = {
   id: string
@@ -23,6 +23,10 @@ export type Project = {
   /** Highlight the due date as "coming up" */
   dueSoon?: boolean
   archived?: boolean
+  accent?: string
+  key?: string
+  template?: string
+  createdAt?: number
 }
 
 export const STATUSES: ProjectStatus[] = ["In Progress", "At Risk", "Planned", "Completed"]

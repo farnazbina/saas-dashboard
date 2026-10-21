@@ -15,6 +15,8 @@ import {
   type SortKey,
 } from "@/utils/projects-utils";
 import { ActiveFilters, activeFilterCount } from "./ActiveFilters";
+import { CreateProjectDialog } from "./CreateProjectDialog"
+import { PEOPLE, type NewProjectValues } from "./CreateProjectModal"
 import { BulkActionBar } from "./BulkActionBar";
 import { ProjectsEmpty } from "./ProjectsEmpty";
 import { ProjectsGrid } from "./ProjectsGrid";
@@ -22,6 +24,7 @@ import { ProjectsHeader } from "./ProjectsHeader";
 import { ProjectsPagination } from "./ProjectsPagination";
 import { ProjectsTable } from "./ProjectsTable";
 import { ProjectsToolbar, type ViewMode } from "./ProjectsToolbar";
+import { CircleCheck, X } from "lucide-react";
 
 export function ProjectsView() {
   const [projects, setProjects] = React.useState<Project[]>(INITIAL_PROJECTS);
@@ -31,6 +34,14 @@ export function ProjectsView() {
   const [page, setPage] = React.useState(1);
   const [pageSize, setPageSize] = React.useState(6);
   const [selected, setSelected] = React.useState<Set<string>>(new Set());
+  const [createOpen, setCreateOpen] = React.useState(false);
+  const [notice, setNotice] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (!notice) return;
+    const t = setTimeout(() => setNotice(null), 6000);
+    return () => clearTimeout(t);
+  }, [notice]);
 
   const live = React.useMemo(
     () => projects.filter((p) => !p.archived),
@@ -123,6 +134,42 @@ export function ProjectsView() {
     });
   };
 
+  /* ---- create ---- */
+  const createProject = (v: NewProjectValues) => {
+    const owner = PEOPLE.find((p) => p.id === v.owner);
+    const ownerName = owner?.name ?? "Unassigned";
+    const team = [
+      ownerName,
+      ...v.team
+        .map((id) => PEOPLE.find((p) => p.id === id)?.name ?? "")
+        .filter((n) => n && n !== ownerName),
+    ];
+    const project: Project = {
+      id: `p-${Date.now()}`,
+      name: v.name.trim(),
+      description: v.description.trim() || "No description yet.",
+      icon: v.icon,
+      accent: v.accent,
+      key: v.key,
+      template: v.template,
+      status: v.stage,
+      priority: v.priority,
+      owner: ownerName,
+      team,
+      progress: 0,
+      tasksDone: 0,
+      tasksTotal: 0,
+      due: v.deadline,
+      createdAt: Date.now(),
+    };
+    setProjects((all) => [project, ...all]);
+    // Show it right away: clear filters, sort by newest, go to page 1
+    setFilters(DEFAULT_FILTERS);
+    setSort("due-asc");
+    setPage(1);
+    setNotice(`“${project.name}” was created and is shown first.`);
+  };
+
   const pagination = (className?: string) => (
     <ProjectsPagination
       className={className}
@@ -140,7 +187,30 @@ export function ProjectsView() {
 
   return (
     <div className="space-y-4 sm:space-y-5">
-      <ProjectsHeader total={live.length} />
+      <ProjectsHeader
+        total={live.length}
+        onCreate={() => setCreateOpen(true)}
+      />
+
+      {notice && (
+        <div
+          role="status"
+          className="flex items-center justify-between gap-3 rounded-xl border border-success/30 bg-success-soft px-4 py-2.5 text-sm text-success-ink"
+        >
+          <span className="flex items-center gap-2">
+            <CircleCheck className="size-4 shrink-0" aria-hidden />
+            {notice}
+          </span>
+          <button
+            type="button"
+            aria-label="Dismiss"
+            onClick={() => setNotice(null)}
+            className="rounded p-0.5 hover:bg-black/10 focus-visible:ring-2 focus-visible:ring-current focus-visible:outline-none dark:hover:bg-white/10"
+          >
+            <X className="size-4" />
+          </button>
+        </div>
+      )}
 
       <ProjectsToolbar
         filters={filters}
@@ -190,6 +260,17 @@ export function ProjectsView() {
           {pagination("rounded-2xl border bg-card shadow-xs")}
         </>
       )}
+
+      <CreateProjectDialog
+        open={createOpen}
+        onOpenChange={setCreateOpen}
+        onCreate={createProject}
+        onDraftSaved={() =>
+          setNotice(
+            "Draft saved. It will be restored the next time you create a project.",
+          )
+        }
+      />
     </div>
   );
 }
