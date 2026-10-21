@@ -39,7 +39,7 @@ export function ProjectsHeader({ total }: { total: number }) {
             Import Projects
             <ChevronDown className="size-3.5 text-muted-foreground" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="bg-card">
             <DropdownMenuItem>From CSV</DropdownMenuItem>
             <DropdownMenuItem>From Trello</DropdownMenuItem>
             <DropdownMenuItem>From Jira</DropdownMenuItem>
@@ -67,7 +67,7 @@ export function ProjectsHeader({ total }: { total: number }) {
           >
             <MoreHorizontal className="size-4" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="bg-card">
             <DropdownMenuItem>Export as CSV</DropdownMenuItem>
             <DropdownMenuItem>View archived</DropdownMenuItem>
           </DropdownMenuContent>

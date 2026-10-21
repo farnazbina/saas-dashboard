@@ -60,7 +60,7 @@ export function FilterMenu<T extends string>({
         </span>
         <ChevronDown className="size-3.5 text-muted-foreground" aria-hidden />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align={align} className="min-w-44">
+      <DropdownMenuContent align={align} className="min-w-44 bg-card">
         {options.map((o) => (
           <DropdownMenuItem
             key={o.value}

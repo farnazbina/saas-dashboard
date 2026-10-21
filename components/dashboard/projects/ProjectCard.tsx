@@ -94,7 +94,7 @@ export function ProjectCard({
           >
             <MoreHorizontal className="size-4" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="bg-card">
             <DropdownMenuItem
               render={<Link href={`/dashboard/projects/${p.id}`} />}
             >

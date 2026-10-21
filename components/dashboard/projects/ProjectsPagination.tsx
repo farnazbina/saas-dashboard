@@ -73,7 +73,7 @@ export function ProjectsPagination({
             >
               {pageSize} <ChevronDown className="size-3" aria-hidden />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-20">
+            <DropdownMenuContent align="end" className="min-w-20 bg-card">
               {PAGE_SIZES.map((n) => (
                 <DropdownMenuItem key={n} onClick={() => onPageSize(n)}>
                   {n}

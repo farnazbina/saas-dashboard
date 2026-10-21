@@ -41,7 +41,7 @@ export function BulkActionBar({
         <DropdownMenuTrigger render={<button type="button" className={action} />}>
           <CircleDot className="size-3.5" aria-hidden /> Change Status <ChevronDown className="size-3" aria-hidden />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start">
+        <DropdownMenuContent align="start" className="bg-card">
           {STATUSES.map((s) => (
             <DropdownMenuItem key={s} onClick={() => onStatus(s)}>{s}</DropdownMenuItem>
           ))}
@@ -52,7 +52,7 @@ export function BulkActionBar({
         <DropdownMenuTrigger render={<button type="button" className={action} />}>
           <UserPlus className="size-3.5" aria-hidden /> Assign Owner <ChevronDown className="size-3" aria-hidden />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start">
+        <DropdownMenuContent align="start" className="bg-card">
           {owners.map((o) => (
             <DropdownMenuItem key={o} onClick={() => onOwner(o)}>{o}</DropdownMenuItem>
           ))}

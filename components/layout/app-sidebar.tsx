@@ -133,7 +133,7 @@ function WorkspaceSwitcher() {
           <ChevronsUpDown className={cn("size-4 text-muted-foreground", hideWhenCollapsed)} />
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-56 rounded-lg"
+        className="w-56 rounded-lg bg-card"
         side={isMobile ? "bottom" : "right"}
         align="start"
         sideOffset={8}
@@ -202,7 +202,7 @@ function UserMenu() {
           <MoreVertical className={cn("size-4 text-muted-foreground", hideWhenCollapsed)} />
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-56 rounded-lg"
+        className="w-56 rounded-lg bg-card"
         side={isMobile ? "bottom" : "right"}
         align="end"
         sideOffset={8}
