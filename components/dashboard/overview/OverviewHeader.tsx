@@ -56,7 +56,7 @@ export function OverviewHeader({ userName }: { userName: string }) {
             {range}
             <ChevronDown className="size-3.5 text-muted-foreground" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="bg-card">
             {RANGES.map((r) => (
               <DropdownMenuItem key={r} onClick={() => setRange(r)}>
                 {r}

@@ -1,24 +1,29 @@
-// app/dashboard/layout.tsx
-import { ThemeProvider } from "next-themes"
+// app/(dashboard)/layout.tsx   (replaces the earlier layout: the top bar is now its own component)
+import { ThemeProvider } from "next-themes";
 
-import { AppSidebar, ThemeToggle } from "@/components/layout/app-sidebar"
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/layout/app-sidebar";
+import { AppTopbar } from "@/components/layout/AppTopbar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset className="bg-[#F6F6FD] dark:bg-[#0E0E16]">
-          {/* Top bar: the trigger is how you re-expand from the icon rail (Ctrl/Cmd + B also works) */}
-          <header className="flex h-14 items-center gap-2 border-b px-4">
-            <SidebarTrigger aria-label="Toggle sidebar" />
-            <h1 className="text-sm font-medium">Overview Dashboard</h1>
-            <ThemeToggle className="ml-auto" />
-          </header>
-          <main className="flex-1 p-6">{children}</main>
+          <AppTopbar />
+          <main className="flex-1 p-4 sm:p-6">{children}</main>
         </SidebarInset>
       </SidebarProvider>
     </ThemeProvider>
-  )
+  );
 }
