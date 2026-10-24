@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Google_Sans, Plus_Jakarta_Sans } from "next/font/google";
+import { Google_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 // import { ModalProvider } from "@/components/modals/modalProvider";
@@ -13,12 +13,12 @@ const googleSans = Google_Sans({
   adjustFontFallback: false,
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-plus-jakarta-sans',
-  adjustFontFallback: false,
-});
+// const plusJakartaSans = Plus_Jakarta_Sans({
+//   subsets: ['latin'],
+//   weight: ['400', '500', '600', '700', '800'],
+//   variable: '--font-plus-jakarta-sans',
+//   adjustFontFallback: false,
+// });
 
 export const metadata: Metadata = {
   title: "Saas Dashboard - Farnaz Bina",
@@ -34,7 +34,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${plusJakartaSans.variable} h-full antialiased`}
+      className={`${googleSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <QueryProviders>
