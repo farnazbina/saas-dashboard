@@ -96,7 +96,7 @@ export function ProjectCard({
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="bg-card">
             <DropdownMenuItem
-              render={<Link href={`/dashboard/projects/${p.id}`} />}
+              render={<Link href={`/projects/${p.id}`} />}
             >
               Open project
             </DropdownMenuItem>
@@ -111,7 +111,7 @@ export function ProjectCard({
         <div className="flex items-start justify-between gap-3">
           <h3 className="font-semibold">
             <Link
-              href={`/dashboard/projects/${p.id}`}
+              href={`/projects/${p.id}`}
               className="hover:text-brand-ink hover:underline focus-visible:rounded focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none"
             >
               {p.name}
