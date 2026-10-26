@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Plus } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
-import { PersonAvatar } from "@/components/common/PersonAvatar";
+import { PersonAvatar } from "@/components/ui/PersonAvatar";
 import { Pill, type Tone } from "@/components/dashboard/overview/Pill";
 import { SectionCard } from "@/components/dashboard/overview/SectionCard";
 import { shortName } from "@/components/dashboard/projects/CreateProjectModal";

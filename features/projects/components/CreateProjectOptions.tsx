@@ -7,11 +7,11 @@ import {
   Rocket,
 } from "lucide-react";
 
-import { PersonAvatar } from "@/components/common/PersonAvatar";
+import { PersonAvatar } from "@/components/ui/PersonAvatar";
 import { PROJECT_ICONS } from "./ProjectIcon";
 import type { ProjectIconKey, ProjectPriority } from "@/data/projects-data";
 import { PEOPLE, type Stage, type TemplateId } from "./CreateProjectModal";
-import type { SelectOption } from "@/components/common/SelectMenu";
+import type { SelectOption } from "@/components/ui/SelectMenu";
 
 export const ACCENTS = [
   { value: "#4f46e5", label: "Indigo", fg: "#ffffff" },

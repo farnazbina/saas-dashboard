@@ -18,7 +18,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { AccentPicker } from "@/components/common/AccentPicker";
+import { AccentPicker } from "@/components/ui/AccentPicker";
 import {
   clearDraft,
   defaultValues,
@@ -38,8 +38,8 @@ import {
   STAGE_OPTIONS,
   TEMPLATE_OPTIONS,
 } from "./CreateProjectOptions";
-import { controlClass, Field } from "@/components/common/FormField";
-import { SelectMenu } from "@/components/common/SelectMenu";
+import { controlClass, Field } from "@/components/ui/FormField";
+import { SelectMenu } from "@/components/ui/SelectMenu";
 import { TeamMembersField } from "./TeamMembersField";
 
 const FIELD_IDS = {

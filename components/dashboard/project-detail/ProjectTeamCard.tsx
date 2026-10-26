@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 
-import { PersonAvatar } from "@/components/common/PersonAvatar";
+import { PersonAvatar } from "@/components/ui/PersonAvatar";
 import { Pill } from "@/components/dashboard/overview/Pill";
 import { SectionCard } from "@/components/dashboard/overview/SectionCard";
 import type { Presence, TeamMember } from "@/data/project-detail-data";
