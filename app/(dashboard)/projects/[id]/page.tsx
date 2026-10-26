@@ -2,22 +2,22 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { ProjectHeader } from "@/features/projects/components/detail/ProjectHeader";
-import { ProjectMetaChips } from "@/features/projects/components/detail/ProjectMetaChip";
-import { ProjectProgressCard } from "@/features/projects/components/detail/ProjectProgressCard";
-import { ProjectStatCards } from "@/features/projects/components/detail/ProjectStatCards";
+import { ProjectHeader } from "@/features/projects/components/detail/header";
+import { ProjectMetaChips } from "@/features/projects/components/detail/meta-chip";
+import { ProjectProgressCard } from "@/features/projects/components/detail/progress-card";
+import { ProjectStatCards } from "@/features/projects/components/detail/stat-cards";
 import {
   ProjectTabs,
   isTabId,
-} from "@/features/projects/components/detail/ProjectTabs";
-import { ProjectTeamCard } from "@/features/projects/components/detail/ProjectTeamCard";
-import { TabPlaceholder } from "@/features/projects/components/detail/TabPlaceholder";
+} from "@/features/projects/components/detail/tabs";
+import { ProjectTeamCard } from "@/features/projects/components/detail/team-card";
+import { TabPlaceholder } from "@/features/projects/components/detail/tab-placeholder";
 import { getProjectDetail } from "@/data/project-detail-data";
 import { INITIAL_PROJECTS } from "@/data/projects-data";
-import { MilestonesTimeline } from "@/features/projects/components/detail/MilestonesTimeline";
-import { RecentTasks } from "@/features/projects/components/detail/RecentTasks";
-import { ProjectDeadlines } from "@/features/projects/components/detail/ProjectDeadlines";
-import { ProjectActivity } from "@/features/projects/components/detail/ProjectActivity";
+import { MilestonesTimeline } from "@/features/projects/components/detail/milestones-timeline";
+import { RecentTasks } from "@/features/projects/components/detail/recent-tasks";
+import { ProjectDeadlines } from "@/features/projects/components/detail/deadlines";
+import { ProjectActivity } from "@/features/projects/components/detail/activity";
 
 type Props = {
   params: Promise<{ id: string }>;
