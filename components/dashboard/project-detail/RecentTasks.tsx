@@ -8,7 +8,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { PersonAvatar } from "@/components/ui/PersonAvatar";
 import { Pill, type Tone } from "@/components/dashboard/overview/Pill";
 import { SectionCard } from "@/components/dashboard/overview/SectionCard";
-import { shortName } from "@/components/dashboard/projects/CreateProjectModal";
+import { shortName } from "@/features/projects/components/CreateProjectModal";
 import type { DetailTask, DetailTaskStatus } from "@/data/project-detail-data";
 import { formatDate } from "@/utils/projects-utils";
 import { cn } from "@/lib/utils";

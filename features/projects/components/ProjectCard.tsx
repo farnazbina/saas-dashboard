@@ -21,9 +21,9 @@ import { ProgressBar } from "@/components/dashboard/overview/ProgressBar";
 import type { Project } from "@/data/projects-data";
 import { formatDate } from "@/utils/projects-utils";
 import { cn } from "@/lib/utils";
-import { PriorityTag, StatusPill } from "../../common/Badges";
+import { PriorityTag, StatusPill } from "@/components/ui/Badges";
 import { ProjectIcon } from "./ProjectIcon";
-import { TeamAvatars } from "../../common/TeamAvatar";
+import { TeamAvatars } from "@/components/ui/TeamAvatar";
 
 function DueChip({ project }: { project: Project }) {
   const date = formatDate(project.due);

@@ -3,7 +3,7 @@ import { Flag, Pencil, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Pill } from "@/components/dashboard/overview/Pill";
 import { StatusPill } from "@/components/ui/Badges";
-import { PROJECT_ICONS } from "@/components/dashboard/projects/ProjectIcon";
+import { PROJECT_ICONS } from "@/features/projects/components/ProjectIcon";
 import { TeamAvatars } from "@/components/ui/TeamAvatar";
 import type { ProjectDetail } from "@/data/project-detail-data";
 import type { Project } from "@/data/projects-data";
