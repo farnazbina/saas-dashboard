@@ -1,6 +1,6 @@
 import { Gauge } from "lucide-react"
 
-import { SectionCard } from "@/components/dashboard/overview/SectionCard"
+import { SectionCard } from "@/features/overview/components/SectionCard"
 import type { ProjectDetail } from "@/data/project-detail-data"
 import { Sparkline } from "./Sparkline"
 

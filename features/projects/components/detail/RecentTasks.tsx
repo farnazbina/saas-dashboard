@@ -6,9 +6,9 @@ import { ArrowRight, Plus } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { PersonAvatar } from "@/components/ui/PersonAvatar";
-import { Pill, type Tone } from "@/components/dashboard/overview/Pill";
-import { SectionCard } from "@/components/dashboard/overview/SectionCard";
-import { shortName } from "@/features/projects/components/CreateProjectModal";
+import { Pill, type Tone } from "@/features/overview/components/Pill";
+import { SectionCard } from "@/features/overview/components/SectionCard";
+import { shortName } from "@/features/projects/components/list/CreateProjectModal";
 import type { DetailTask, DetailTaskStatus } from "@/data/project-detail-data";
 import { formatDate } from "@/utils/projects-utils";
 import { cn } from "@/lib/utils";

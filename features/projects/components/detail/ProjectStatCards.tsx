@@ -9,7 +9,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import { TONE_SOFT, type Tone } from "@/components/dashboard/overview/Pill";
+import { TONE_SOFT, type Tone } from "@/features/overview/components/Pill";
 import type { ProjectDetail } from "@/data/project-detail-data";
 import { cn } from "@/lib/utils";
 

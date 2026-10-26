@@ -1,5 +1,5 @@
-import { Pill } from "@/components/dashboard/overview/Pill";
-import { SectionCard, ViewAllLink } from "@/components/dashboard/overview/SectionCard";
+import { Pill } from "@/features/overview/components/Pill";
+import { SectionCard, ViewAllLink } from "@/features/overview/components/SectionCard";
 import { deadlineBadge, type DeadlineItem } from "@/data/project-detail-data";
 
 function DateTile({ iso }: { iso: string }) {

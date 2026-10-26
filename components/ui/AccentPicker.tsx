@@ -4,7 +4,7 @@ import * as React from "react";
 import { Check } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { ACCENTS } from "@/features/projects/components/CreateProjectOptions";
+import { ACCENTS } from "@/features/projects/components/list/CreateProjectOptions";
 
 export function AccentPicker({
   value,

@@ -1,4 +1,4 @@
-import { SectionCard, ViewAllLink } from "@/components/dashboard/overview/SectionCard";
+import { SectionCard, ViewAllLink } from "@/features/overview/components/SectionCard";
 import type {
   DetailActivity,
   DetailActivityKind,

@@ -16,8 +16,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Pill } from "@/components/dashboard/overview/Pill";
-import { ProgressBar } from "@/components/dashboard/overview/ProgressBar";
+import { Pill } from "@/features/overview/components/Pill";
+import { ProgressBar } from "@/features/overview/components/ProgressBar";
 import type { Project } from "@/data/projects-data";
 import { formatDate } from "@/utils/projects-utils";
 import { cn } from "@/lib/utils";

@@ -6,7 +6,7 @@ import {
 
 import type { ProjectIconKey, ProjectStatus } from "@/data/projects-data"
 import { cn } from "@/lib/utils"
-import { TONE_SOFT, type Tone } from "@/components/dashboard/overview/Pill"
+import { TONE_SOFT, type Tone } from "@/features/overview/components/Pill"
 
 export const PROJECT_ICONS: Record<ProjectIconKey, LucideIcon> = {
   folder: FolderOpen, web: AppWindow, mobile: Smartphone, crm: LayoutDashboard, design: Palette, analytics: BarChart3,

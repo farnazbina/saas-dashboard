@@ -9,7 +9,7 @@ import {
 
 import type { ProjectPriority, ProjectStatus } from "@/data/projects-data";
 import { cn } from "@/lib/utils";
-import { Pill, type Tone } from "@/components/dashboard/overview/Pill";
+import { Pill, type Tone } from "@/features/overview/components/Pill";
 
 const STATUS_TONE: Record<ProjectStatus, Tone> = {
   "In Progress": "info",

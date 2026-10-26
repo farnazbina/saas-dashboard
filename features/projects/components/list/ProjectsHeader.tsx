@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Pill } from "@/components/dashboard/overview/Pill";
+import { Pill } from "@/features/overview/components/Pill";
 
 export function ProjectsHeader({
   total,

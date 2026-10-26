@@ -1,7 +1,7 @@
 // app/(dashboard)/projects/page.tsx  (match the URL you used in the sidebar)
 import type { Metadata } from "next";
 
-import { ProjectsView } from "@/features/projects/components/ProjectsView";
+import { ProjectsView } from "@/features/projects/components/list/ProjectsView";
 
 export const metadata: Metadata = { title: "Projects · Flowspace" };
 

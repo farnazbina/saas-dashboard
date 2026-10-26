@@ -1,5 +1,5 @@
 import { DEADLINES } from "@/data/overview-data";
-import { PersonAvatar } from "../../ui/PersonAvatar";
+import { PersonAvatar } from "../../../components/ui/PersonAvatar";
 import { Pill } from "./Pill";
 import { ProgressBar } from "./ProgressBar";
 import { SectionCard, ViewAllLink } from "./SectionCard";

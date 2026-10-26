@@ -2,7 +2,7 @@ import { X } from "lucide-react";
 
 import { DEADLINE_OPTIONS, type Filters } from "@/utils/projects-utils";
 import { cn } from "@/lib/utils";
-import { TONE_SOFT, type Tone } from "@/components/dashboard/overview/Pill";
+import { TONE_SOFT, type Tone } from "@/features/overview/components/Pill";
 
 type Key = keyof Filters;
 

@@ -1,7 +1,7 @@
 import { Check, ChevronRight } from "lucide-react"
 
-import { Pill } from "@/components/dashboard/overview/Pill"
-import { SectionCard, ViewAllLink } from "@/components/dashboard/overview/SectionCard"
+import { Pill } from "@/features/overview/components/Pill"
+import { SectionCard, ViewAllLink } from "@/features/overview/components/SectionCard"
 import type { Milestone } from "@/data/project-detail-data"
 import { formatDate } from "@/utils/projects-utils"
 import { cn } from "@/lib/utils"

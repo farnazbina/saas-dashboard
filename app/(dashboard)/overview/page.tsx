@@ -1,10 +1,10 @@
-import { MyTasksTable } from "@/components/dashboard/overview/MyTaskstable";
-import { OverviewHeader } from "@/components/dashboard/overview/OverviewHeader";
-import { ProjectProgressChart } from "@/components/dashboard/overview/ProjectProgressChart";
-import { RecentActivity } from "@/components/dashboard/overview/RecentActivities";
-import { StatCards } from "@/components/dashboard/overview/StatCards";
-import { TasksByStatusChart } from "@/components/dashboard/overview/TaskByStatusChart";
-import { UpcomingDeadlines } from "@/components/dashboard/overview/UpcomingDeadlines";
+import { MyTasksTable } from "@/features/overview/components/MyTaskstable";
+import { OverviewHeader } from "@/features/overview/components/OverviewHeader";
+import { ProjectProgressChart } from "@/features/overview/components/ProjectProgressChart";
+import { RecentActivity } from "@/features/overview/components/RecentActivities";
+import { StatCards } from "@/features/overview/components/StatCards";
+import { TasksByStatusChart } from "@/features/overview/components/TaskByStatusChart";
+import { UpcomingDeadlines } from "@/features/overview/components/UpcomingDeadlines";
 
 export default function DashboardPage() {
   return (

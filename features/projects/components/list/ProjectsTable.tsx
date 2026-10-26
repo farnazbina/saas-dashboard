@@ -5,7 +5,7 @@ import Link from "next/link"
 import { ArrowDown, ArrowUp } from "lucide-react"
 
 import { PersonAvatar } from "@/components/ui/PersonAvatar"
-import { ProgressBar } from "@/components/dashboard/overview/ProgressBar"
+import { ProgressBar } from "@/features/overview/components/ProgressBar"
 import type { Project } from "@/data/projects-data"
 import type { SortKey } from "@/utils/projects-utils"
 import { cn } from "@/lib/utils"

@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Pill } from "@/components/dashboard/overview/Pill";
+import { Pill } from "@/features/overview/components/Pill";
 import { pageWindow } from "@/utils/projects-utils";
 import { cn } from "@/lib/utils";
 

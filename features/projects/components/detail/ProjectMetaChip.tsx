@@ -1,7 +1,7 @@
 import { CalendarDays } from "lucide-react";
 
 import { PersonAvatar } from "@/components/ui/PersonAvatar";
-import { ProgressBar } from "@/components/dashboard/overview/ProgressBar";
+import { ProgressBar } from "@/features/overview/components/ProgressBar";
 import {
   deadlineStatus,
   formatRange,
